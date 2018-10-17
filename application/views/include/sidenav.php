@@ -25,18 +25,18 @@
       </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="<?php echo site_url('main/dashboard'); ?>">
+      <a class="nav-link" data-toggle="collapse" href="<?php echo site_url('main/dashboard'); ?>">
         <i class="menu-icon mdi mdi-television"></i>
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#user" aria-expanded="false" aria-controls="user">
-        <i class="menu-icon mdi mdi-account-outline"></i>
+        <i class="menu-icon mdi mdi-content-copy"></i>
         <span class="menu-title">User</span>
         <i class="menu-arrow"></i>
       </a>
-      <div class="collapse show" id="user">
+      <div class="collapse" id="user">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
             <a class="nav-link" href="<?php echo site_url('main/addUser'); ?>">Add User</a>

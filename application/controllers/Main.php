@@ -24,7 +24,7 @@ class Main extends CI_Controller
 		$data['title'] = "Halaman Pengguna - PKK";
 		$data['menu'] = "Halaman Pengguna";
 		$data['user'] = $this->M_back->getUser();
-		$this->load->view('include/head',$data);
+		$this->load->view('include/head');
 		$this->load->view('back/user/user',$data);
 		$this->load->view('include/foot');
 	}

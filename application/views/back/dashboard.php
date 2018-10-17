@@ -1,100 +1,100 @@
 <body>
-<style>
-    .datepicker-days{
-  display: block !important;
-}
+  <style>
+  .datepicker-days{
+    display: block !important;
+  }
 </style>    
-  <div class="container-scroller">
-    <?php $this->load->view('include/menu-top'); ?>
-    <div class="container-fluid page-body-wrapper">
-      <?php $this->load->view('include/sidenav'); ?>
-      <div class="main-panel" style="margin-left: 255px;">
-        <div class="content-wrapper">
-          <div class="row">
-            <div class="col-lg-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <form action="javascript:void(0);" id="chartradar" method="POST">
-                    <div class="row">
-                      <div class="col-lg-4">
-                        <div class="input-group">
-                          <input type="text" id="awalradarchart" autocomplete="off" class="form-control" name="awal" placeholder="Dari Tanggal">
-                        </div>
-                      </div> 
-                      <div class="col-lg-4">
-                        <div class="input-group">
-                          <input type="text" id="akhirradarchart" autocomplete="off" class="form-control" name="akhir" placeholder="Ke Tanggal">
-                        </div>
+<div class="container-scroller">
+  <?php $this->load->view('include/menu-top'); ?>
+  <div class="container-fluid page-body-wrapper">
+    <?php $this->load->view('include/sidenav'); ?>
+    <div class="main-panel" style="margin-left: 255px;">
+      <div class="content-wrapper">
+        <div class="row">
+          <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <form action="javascript:void(0);" id="chartradar" method="POST">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="input-group">
+                        <input type="text" id="awalradarchart" autocomplete="off" class="form-control" name="awal" placeholder="Dari Tanggal">
                       </div>
-                      <div class="col-lg-4">
-                        <button type="submit" class="btn btn-danger">Cari Chart</button>
+                    </div> 
+                    <div class="col-lg-4">
+                      <div class="input-group">
+                        <input type="text" id="akhirradarchart" autocomplete="off" class="form-control" name="akhir" placeholder="Ke Tanggal">
                       </div>
                     </div>
-                  </form>
-                  <canvas class="radar" id="myChart" style="width: 300px; height: 100px;"></canvas>
-                  <div class="radarbaru"></div>
-                </div>
-              </div>
-            </div>  
-            <div class="col-lg-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <form action="javascript:void(0);" id="chartline" method="POST">
-                    <div class="row">
-                      <div class="col-lg-4">
-                        <div class="input-group">
-                          <input type="text" id="awallinechart" autocomplete="off" class="form-control" name="awal" placeholder="Dari Tanggal">
-                        </div>
-                      </div> 
-                      <div class="col-lg-4">
-                        <div class="input-group">
-                          <input type="text" id="akhirlinechart" autocomplete="off" class="form-control" name="akhir" placeholder="Ke Tanggal">
-                        </div>
-                      </div>
-                      <div class="col-lg-4">
-                        <button type="submit" class="btn btn-danger">Cari Chart</button>
-                      </div>
+                    <div class="col-lg-4">
+                      <button type="submit" class="btn btn-danger">Cari Chart</button>
                     </div>
-                  </form>
-                  <div class="line" id="line_top_x" style="width: 800px; height: 500px;"></div>
-                  <div class="baru"></div>
-                </div>
+                  </div>
+                </form>
+                <canvas class="radar" id="myChart" style="width: 300px; height: 100px;"></canvas>
+                <div class="radarbaru"></div>
               </div>
             </div>
           </div>  
-          <div class="row">  
-            <div class="col-md-12 grid-margin">
-              <div class="card">
-                <div class="card-body">
-                  <form action="javascript:void(0);" id="chartcolum" method="POST">
-                    <div class="row">
-                       <div class="col-lg-4">
-                        <div class="input-group">
-                          <input type="text" id="awalcolomchart" autocomplete="off" class="form-control" name="awal" placeholder="Dari Tanggal">
-                        </div>
-                      </div> 
-                      <div class="col-lg-4">
-                        <div class="input-group">
-                          <input type="text" id="akhircolomchart" autocomplete="off" class="form-control" name="akhir" placeholder="Ke Tanggal">
-                        </div>
-                      </div> 
-                      <div class="col-lg-4">
-                        <button type="submit" class="btn btn-danger">Cari Chart</button>
+          <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <form action="javascript:void(0);" id="chartline" method="POST">
+                  <div class="row" style="margin-bottom: 20px;">
+                    <div class="col-lg-4">
+                      <div class="input-group">
+                        <input type="text" id="awallinechart" autocomplete="off" class="form-control" name="awal" placeholder="Dari Tanggal">
+                      </div>
+                    </div> 
+                    <div class="col-lg-4">
+                      <div class="input-group">
+                        <input type="text" id="akhirlinechart" autocomplete="off" class="form-control" name="akhir" placeholder="Ke Tanggal">
                       </div>
                     </div>
-                  </form>
-                  <div class="colom" id="columnchart_material" style="width: 800px; height: 500px;"></div>
-                  <div class="barucolom"></div>
-                </div>
+                    <div class="col-lg-4">
+                      <button type="submit" class="btn btn-danger">Cari Chart</button>
+                    </div>
+                  </div>
+                </form>
+                <div class="line" id="line_top_x" style="width: 100%;height: 400px;"></div>
+                <div class="baru"></div>
               </div>
             </div>
           </div>
-          <div class="row">  
-            <div class="col-md-12 grid-margin">
-              <div class="card">
-                <div class="card-body">
-                  <form action="javascript:void(0);" id="chartpyramid" method="POST">
-                    <div class="row">
+        </div>  
+        <div class="row">  
+          <div class="col-md-12 grid-margin">
+            <div class="card">
+              <div class="card-body">
+                <form action="javascript:void(0);" id="chartcolum" method="POST">
+                  <div class="row" style="margin-bottom: 20px;">
+                   <div class="col-lg-4">
+                    <div class="input-group">
+                      <input type="text" id="awalcolomchart" autocomplete="off" class="form-control" name="awal" placeholder="Dari Tanggal">
+                    </div>
+                  </div> 
+                  <div class="col-lg-4">
+                    <div class="input-group">
+                      <input type="text" id="akhircolomchart" autocomplete="off" class="form-control" name="akhir" placeholder="Ke Tanggal">
+                    </div>
+                  </div> 
+                  <div class="col-lg-4">
+                    <button type="submit" class="btn btn-danger">Cari Chart</button>
+                  </div>
+                </div>
+              </form>
+              <div class="colom" id="columnchart_material" style="width: 100%;height: 400px;"></div>
+              <div class="barucolom"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">  
+        <div class="col-md-12 grid-margin">
+          <div class="card">
+            <div class="card-body">
+              <form action="javascript:void(0);" id="chartpyramid" method="POST">
+                <div class="row" style="margin-bottom: 20px;">
                  <div class="col-lg-4">
                   <div class="input-group">
                     <input type="text" id="awalpyramidchart" autocomplete="off" class="form-control" name="awal" placeholder="Dari Tanggal">

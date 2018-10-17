@@ -1,10 +1,10 @@
-<nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="background: #00ce68;">
+<nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="background:#00a99d;">
   <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
     <a class="navbar-brand brand-logo" href="index.html">
-      <img src="https://pantauair.com/public/img/logo.png" alt="logo" style="width: 75%;height: 35px;" />
+      <img src="https://pkk-dki.org/web/sites/default/files/logo-web.png" alt="logo" style="width: 85%;height: 35px;" />
     </a>
     <a class="navbar-brand brand-logo-mini" href="index.html">
-      <img src="https://pantauair.com/public/img/logo.png" alt="logo" />
+      <img src="<?php echo base_url('assets/images/logo-pemprov-dki-jakarta.jpg'); ?>" alt="logo" style="width: 80%;height: 100%;"/>
     </a>
   </div>
   <div class="navbar-menu-wrapper d-flex align-items-center">

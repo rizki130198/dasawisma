@@ -11,5 +11,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/vendor.bundle.addons.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/vendor.bundle.base.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/style.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/style1.css'); ?>">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 </head> 
