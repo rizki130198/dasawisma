@@ -9,7 +9,7 @@
 						<div class="col-md-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<h3 class="card-title">Edit Pengguna</h3>
+									<h3 class="card-title" style="font-size: 20px;">Edit Pengguna</h3>
 									<?php foreach ($edituser as $rowEdit) { ?>
 										<form class="forms-sample" method="post" action="<?php echo site_url('main/actEditUser/'.$rowEdit->id); ?>">
 											<div class="form-group">

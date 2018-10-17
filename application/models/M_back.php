@@ -20,6 +20,12 @@ class M_back extends CI_Model
 			$this->session->set_flashdata('gagal', 'Failed Delete User');
 		}
 	}
+	public function getchart(){
+	    $awal = date('Y-m-d H:i:s',strtotime($this->input->post('awal')));
+	    $akhir = date('Y-m-d H:i:s',strtotime($this->input->post('akhir')));
+	    return $query = $this->db->query('SELECT * FROM data WHERE tanggal between "'.$awal.'" AND "'.$akhir.'" Group By kelurahan'); 
+	    
+	}
 	public function actionAddUser()
 	{
 		$email = $this->db->get_where('tbl_user', array('email' => $this->input->post('email',TRUE)))->row();

@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+date_default_timezone_set('Asia/Jakarta');
 class Main extends CI_Controller
 {
 	// function __construct()
@@ -14,9 +14,10 @@ class Main extends CI_Controller
 	{
 		$data['title'] = "Halaman Dashboad - PKK";
 		$data['menu'] = "Halaman Dashboad";
+		$data['chart'] = $this->db->query('SELECT * FROM data Group By Kelurahan');
 		$this->load->view('include/head',$data);
 		$this->load->view('back/dashboard');
-		$this->load->view('include/foot');
+		$this->load->view('include/foot',$data);
 	}
 	public function user()
 	{
@@ -31,7 +32,7 @@ class Main extends CI_Controller
 	{
 		$data['title'] = "Halaman Tambah Pengguna - PKK";
 		$data['menu'] = "Halaman Tambah Pengguna";
-		$this->load->view('include/head',$data);
+		$this->load->view('include/head');
 		$this->load->view('back/user/add_user');
 		$this->load->view('include/foot');
 	}
@@ -64,6 +65,30 @@ class Main extends CI_Controller
 	   	$id = $this->uri->segment(3);
 	   	$this->M_back->delete_user($id);
 	}
+	public function chartline()
+	{
+	   	$data['line'] = $this->M_back->getchart();
+	   	$this->load->view('back/chartline',$data);
+	   	
+   	}
+   	public function chartcolum()
+	{
+	   	$data['colom'] = $this->M_back->getchart();
+	   	$this->load->view('back/chartcolom',$data);
+	   	
+   	}
+   	public function chartpyramid()
+	{
+	   	$data['piramid'] = $this->M_back->getchart();
+	   	$this->load->view('back/chartpryramid',$data);
+	   	
+   	}
+   	public function chartradar()
+	{
+	   	$data['radar'] = $this->M_back->getchart();
+	   	$this->load->view('back/chartradar',$data);
+	   	
+   	}
 	public function logout()
 	{
 		$sess = $this->session->sess_destroy();

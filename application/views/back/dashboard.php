@@ -1,9 +1,9 @@
 <body>
-<style type="text/css">
-.datepicker-days{
+<style>
+    .datepicker-days{
   display: block !important;
 }
-</style>  
+</style>    
   <div class="container-scroller">
     <?php $this->load->view('include/menu-top'); ?>
     <div class="container-fluid page-body-wrapper">
@@ -11,17 +11,53 @@
       <div class="main-panel" style="margin-left: 255px;">
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-lg-7 grid-margin stretch-card">
+            <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <canvas id="myChart" style="width: 300px; height: 100px;"></canvas>
+                  <form action="javascript:void(0);" id="chartradar" method="POST">
+                    <div class="row">
+                      <div class="col-lg-4">
+                        <div class="input-group">
+                          <input type="text" id="awalradarchart" autocomplete="off" class="form-control" name="awal" placeholder="Dari Tanggal">
+                        </div>
+                      </div> 
+                      <div class="col-lg-4">
+                        <div class="input-group">
+                          <input type="text" id="akhirradarchart" autocomplete="off" class="form-control" name="akhir" placeholder="Ke Tanggal">
+                        </div>
+                      </div>
+                      <div class="col-lg-4">
+                        <button type="submit" class="btn btn-danger">Cari Chart</button>
+                      </div>
+                    </div>
+                  </form>
+                  <canvas class="radar" id="myChart" style="width: 300px; height: 100px;"></canvas>
+                  <div class="radarbaru"></div>
                 </div>
               </div>
             </div>  
-            <div class="col-lg-5 grid-margin stretch-card">
+            <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <div id="line_top_x"></div>
+                  <form action="javascript:void(0);" id="chartline" method="POST">
+                    <div class="row">
+                      <div class="col-lg-4">
+                        <div class="input-group">
+                          <input type="text" id="awallinechart" autocomplete="off" class="form-control" name="awal" placeholder="Dari Tanggal">
+                        </div>
+                      </div> 
+                      <div class="col-lg-4">
+                        <div class="input-group">
+                          <input type="text" id="akhirlinechart" autocomplete="off" class="form-control" name="akhir" placeholder="Ke Tanggal">
+                        </div>
+                      </div>
+                      <div class="col-lg-4">
+                        <button type="submit" class="btn btn-danger">Cari Chart</button>
+                      </div>
+                    </div>
+                  </form>
+                  <div class="line" id="line_top_x" style="width: 800px; height: 500px;"></div>
+                  <div class="baru"></div>
                 </div>
               </div>
             </div>
@@ -30,37 +66,25 @@
             <div class="col-md-12 grid-margin">
               <div class="card">
                 <div class="card-body">
-                  <div class="row">
-                    
-                    <div class="col-md-5">
-                      <div class="form-group date">
+                  <form action="javascript:void(0);" id="chartcolum" method="POST">
+                    <div class="row">
+                       <div class="col-lg-4">
                         <div class="input-group">
-                          <div class="input-group-prepend bg-primary border-primary">
-                            <span class="input-group-text bg-transparent text-white">
-                              <i class="fas fa-calendar-alt text-white"></i>
-                            </span>
-                          </div>
-                          <input type="text" id='datetimepicker' class="form-control" placeholder="Masukan Tanggal">
+                          <input type="text" id="awalcolomchart" autocomplete="off" class="form-control" name="awal" placeholder="Dari Tanggal">
                         </div>
+                      </div> 
+                      <div class="col-lg-4">
+                        <div class="input-group">
+                          <input type="text" id="akhircolomchart" autocomplete="off" class="form-control" name="akhir" placeholder="Ke Tanggal">
+                        </div>
+                      </div> 
+                      <div class="col-lg-4">
+                        <button type="submit" class="btn btn-danger">Cari Chart</button>
                       </div>
                     </div>
-                    <div class="col-md-5">
-                      <div class="form-group date">
-                        <div class="input-group">
-                          <div class="input-group-prepend bg-primary border-primary">
-                            <span class="input-group-text bg-transparent text-white">
-                              <i class="fas fa-calendar-alt text-white"></i>
-                            </span>
-                          </div>
-                          <input type="text" id='datetimepicker1' class="form-control" placeholder="Masukan Tanggal">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-2">
-                      <button class="btn btn-primary">Cari</button>
-                    </div>
-                  </div>
-                  <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
+                  </form>
+                  <div class="colom" id="columnchart_material" style="width: 800px; height: 500px;"></div>
+                  <div class="barucolom"></div>
                 </div>
               </div>
             </div>
@@ -69,32 +93,50 @@
             <div class="col-md-12 grid-margin">
               <div class="card">
                 <div class="card-body">
-                  <div id="chart_div"></div>
+                  <form action="javascript:void(0);" id="chartpyramid" method="POST">
+                    <div class="row">
+                 <div class="col-lg-4">
+                  <div class="input-group">
+                    <input type="text" id="awalpyramidchart" autocomplete="off" class="form-control" name="awal" placeholder="Dari Tanggal">
+                  </div>
+                </div> 
+                <div class="col-lg-4">
+                  <div class="input-group">
+                    <input type="text" id="akhirpyramidchart" autocomplete="off" class="form-control" name="akhir" placeholder="Ke Tanggal">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <button type="submit" class="btn btn-danger">Cari Chart</button>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="row">  
-            <div class="col-md-7 grid-margin">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Bar chart</h4>
-                  <canvas id="barChart"></canvas>
-                </div>
-              </div>
-            </div>
+            </form>
+            <div class="pyramid" id="chart_div"></div>
+            <div class="barupyramid"></div>
           </div>
         </div>
-        <footer class="footer">
-          <div class="container-fluid clearfix">
-            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
-              <a href="http://www.bootstrapdash.com/" target="_blank">Bootstrapdash</a>. All rights reserved.
-            </span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with
-              <i class="mdi mdi-heart text-danger"></i>
-            </span>
-          </div>
-        </footer>
       </div>
     </div>
+        <!-- <div class="row">  
+          <div class="col-md-7 grid-margin">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Bar chart</h4>
+                <canvas id="barChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <footer class="footer">
+        <div class="container-fluid clearfix">
+          <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
+            <a href="http://www.bootstrapdash.com/" target="_blank">Bootstrapdash</a>. All rights reserved.
+          </span>
+          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with
+            <i class="mdi mdi-heart text-danger"></i>
+          </span>
+        </div>
+      </footer>
+    </div>
   </div>
+</div>

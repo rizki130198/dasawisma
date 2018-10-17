@@ -1,3 +1,11 @@
+<style type="text/css">
+  .menu-title{
+    font-size: 14px !important;
+  }
+  .nav-link{
+    font-size: 14px !important;
+  }
+</style>
 <nav class="sidebar sidebar-offcanvas" id="sidebar" style="position: fixed;">
   <ul class="nav">
     <li class="nav-item nav-profile">
@@ -17,18 +25,18 @@
       </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse" href="<?php echo site_url('main/dashboard'); ?>">
+      <a class="nav-link" href="<?php echo site_url('main/dashboard'); ?>">
         <i class="menu-icon mdi mdi-television"></i>
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#user" aria-expanded="false" aria-controls="user">
-        <i class="menu-icon mdi mdi-content-copy"></i>
+        <i class="menu-icon mdi mdi-account-outline"></i>
         <span class="menu-title">User</span>
         <i class="menu-arrow"></i>
       </a>
-      <div class="collapse" id="user">
+      <div class="collapse show" id="user">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
             <a class="nav-link" href="<?php echo site_url('main/addUser'); ?>">Add User</a>

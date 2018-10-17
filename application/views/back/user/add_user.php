@@ -9,7 +9,7 @@
 						<div class="col-md-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<h3 class="card-title">Tambah Pengguna</h3>
+									<h3 class="card-title" style="font-size: 20px;">Tambah Pengguna</h3>
 									<form class="forms-sample" method="post" action="<?php echo site_url('main/actAddUser') ?>" accept-charset="utf-8">
 										<div class="form-group">
 											<label for="exampleInputEmail1">Email address</label>

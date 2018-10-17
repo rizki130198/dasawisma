@@ -8,7 +8,7 @@ class Welcome extends CI_Controller {
 		$data['title'] = "Halaman Login - PKK";
 		$this->load->view('include/head',$data);
 		$this->load->view('front/login');
-		$this->load->view('include/foot');
+		$this->load->view('include/footluar');
 	}
 	public function proses_log()
 	{

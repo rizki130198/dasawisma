@@ -28,8 +28,8 @@ html, body {
   left: 0;
   background-repeat: no-repeat;
   background-position: left bottom;
-  background-size: cover;
-  background-image: url("http://www.timorleste.tl/wp-content/uploads/cristo-rey-1.jpg");
+  background-size: 500px;
+  background-image: url("https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bf884ad570b50659c5fa2dc2cfb20ecf&auto=format&fit=crop&w=1000&q=100");
 }
 .form-structor .masuk {
   position: absolute;
@@ -228,28 +228,14 @@ html, body {
   padding: 0;
   cursor: pointer;
 }
-.bahasa{
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 2;
-  padding: 20px 20px 0 0;
-}
 </style>
 <div class="form-structor">
-        <div class="bahasa">
-          <img src="https://vector.me/files/images/1/8/181348/flag_of_indonesia_clip_art.jpg" height="30px" width="30px" style="border-radius: 50%;" class="img img-circle">
-          <img src="http://www.unilab.edu.br/wp-content/uploads/2014/09/destaque-timor-leste.jpg" height="30px" width="30px" style="border-radius: 50%;" class="img img-circle">
-          <img src="http://4.bp.blogspot.com/-TW5OkgCn5X4/UNF2HUtgB2I/AAAAAAAAG_Y/MzRZEyAui0o/s1600/gambar+bendera+inggris+9.jpg" height="30px" width="30px" style="border-radius: 50%;" class="img img-circle">
-        </div>
     <div class="masuk">
-        <!-- <img src=""> -->
-        <img src="http://bonita.telkomcel.tl/assets/images/logo.png">
-        <h2 class="form-title" id="masuk" style="text-transform: uppercase;">pulsa digital</h2>
+        <h2 class="form-title" id="masuk">Masuk</h2>
         <form class="login" action="<?=site_url('welcome/proses_log')?>" method="post">
             <div class="form-holder">
-                <input type="text" name="username" class="input" placeholder="Nomor Telepon" />
-                <input type="password" name="password" class="input" placeholder="Kata Sandi" />
+                <input type="text" name="username" class="input" placeholder="Masukan Username" />
+                <input type="password" name="password" class="input" placeholder="Masukan Password" />
             </div>
             <button class="submit-btn" type="submit">Masuk</button>
         </form>
@@ -258,7 +244,7 @@ html, body {
         <div class="center">
             <h2 class="form-title" id="lupa">Lupa Password?</h2>
             <div class="form-holder">
-                <input type="email" class="input" placeholder="Masukan Nomor" />
+                <input type="email" class="input" placeholder="Masukan Email" />
             </div>
             <button class="submit-btn">Kirim</button>
         </div>
@@ -274,12 +260,10 @@ html, body {
         let parent = e.target.parentNode.parentNode;
         Array.from(e.target.parentNode.parentNode.classList).find((element) => {
             if(element !== "slide-up") {
-                parent.classList.add('slide-up');
-                $(".bahasa").fadeOut();
+                parent.classList.add('slide-up')
             }else{
-                masukBtn.parentNode.classList.add('slide-up');
-                parent.classList.remove('slide-up');
-                // $(".bahasa").fadeIn();
+                masukBtn.parentNode.classList.add('slide-up')
+                parent.classList.remove('slide-up')
             }
         });
     });
