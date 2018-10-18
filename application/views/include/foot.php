@@ -9,6 +9,9 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.es.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 <script type="text/javascript">
+    function rt() {
+        console.log(('#rt').val());
+    }
     $("#chartline").submit(function() {
         var dt = $("#chartline").serialize();
         $.ajax({
@@ -48,6 +51,8 @@
                 $('.pyramid').hide();
                 $('.barupyramid').html(res);
                 $('.barupyramid').show();
+                $('.barupyramid2').html(res);
+                $('.barupyramid2').show();
             }
         })
     });
@@ -61,7 +66,9 @@
             success:function(res) {
                 $('.radar').hide();
                 $('.radarbaru').html(res);
+                $('.radarbaru2').html(res);
                 $('.radarbaru').show();
+                $('.radarbaru2').show();
             }
         })
     });
@@ -181,7 +188,6 @@
                 $maumatilaki = $this->db->query('SELECT * FROM data where nama="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 61 and 100 ')->num_rows();
                 $maumatiperempuan = $this->db->query('SELECT * FROM data where nama="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 61 and 100 ')->num_rows();
                 ?>
-                <?php  ?>
                 ['61-100 Tahun',<?=$maumatilaki?>,  -<?=$maumatiperempuan?>],
                 ['51-60 Tahun',<?=$kakek?>,  -<?=$nenek?>],
                 ['41-50 Tahun',<?=$lansialaki?>, -<?=$lansiaperempuan?> ],
@@ -215,12 +221,21 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script type="text/javascript">
-    
+        <?php 
+        $penduduk = $this->db->query('SELECT * FROM data')->num_rows();
+        $jomblo = $this->db->query('SELECT * FROM data where status_kawin="BELUM KAWIN"')->num_rows(); 
+        $nikah = $this->db->query('SELECT * FROM data where status_kawin="KAWIN"')->num_rows(); 
+        $janda = $this->db->query('SELECT * FROM data where status_kawin="JANDA"')->num_rows(); 
+        $duda = $this->db->query('SELECT * FROM data where status_kawin="DUDA"')->num_rows(); 
+        $getpendapatan = $this->db->query('SELECT * FROM data where pendapatan="0 JT - 5 JT" OR pendapatan = " "')->num_rows(); 
+        $getpendapatan2 = $this->db->query('SELECT * FROM data where pendapatan="6 JT-10 JT"')->num_rows(); 
+        $getpendapatan3 = $this->db->query('SELECT * FROM data where pendapatan!="6 JT-10 JT" AND pendapatan!="0 JT - 5 JT" AND pendapatan != " "')->num_rows(); 
+        $maumati = $this->db->query('SELECT * FROM data where (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 50 and 100 ')->num_rows(); ?>
     	new Chart(document.getElementById("myChart"),
 		{
             "type":"radar",
             "data":{
-                "labels":['Pendapatan 0- 5 Juta', 'Pendapatan 6-10 juta', 'Pendapatan 10-20 Juta', 'Jumlah Penduduk','Penduduk Sakit', ' Tua Renta', 'Belum Nikah', 'Sudah Nikah', 'Janda','DUDA'],
+                "labels":['Pendapatan 0- 5 Juta', 'Pendapatan 6-10 juta', 'Pendapatan 10-20 Juta', 'Jumlah Penduduk', 'Tua Renta', 'Belum Nikah', 'Sudah Nikah', 'Janda','DUDA'],
                  "datasets": [{
                 "label" : 'GAMBIR',
                 "fill":true,
@@ -230,7 +245,7 @@
                     "pointBorderColor":"#fff",
                     "pointHoverBackgroundColor":"#fff",
                     "pointHoverBorderColor":"rgb(255, 99, 132)",
-                "data": [90,70 ,60,85,75, 69,100,120,20,30]
+                "data": [<?=$getpendapatan?>,<?=$getpendapatan2?> ,<?=$getpendapatan3?>,700, <?=$maumati?>,<?=$jomblo?>,<?=$nikah?>,<?=$janda?>,<?=$duda?>]
             }],
         },
             "options":

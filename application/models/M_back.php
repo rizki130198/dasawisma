@@ -26,6 +26,11 @@ class M_back extends CI_Model
 	    return $query = $this->db->query('SELECT * FROM data WHERE tanggal between "'.$awal.'" AND "'.$akhir.'" Group By rw'); 
 	    
 	}
+	public function getrt()
+	{
+		$query = $this->db->query('SELECT * FROM data group By rt');
+		return $query->result();
+	}
 	public function actionAddUser()
 	{
 		$email = $this->db->get_where('tbl_user', array('email' => $this->input->post('email',TRUE)))->row();

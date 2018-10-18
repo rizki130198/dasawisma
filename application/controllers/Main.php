@@ -14,10 +14,10 @@ class Main extends CI_Controller
 	{
 		$data['title'] = "Halaman Dashboad - PKK";
 		$data['menu'] = "Halaman Dashboad";
-		$data['chart'] = $this->db->get('data');
+		$data['rt'] = $this->M_back->getrt();
 		$this->load->view('include/head',$data);
-		$this->load->view('back/dashboard');
-		$this->load->view('include/foot',$data);
+		$this->load->view('back/dashboard',$data);
+		$this->load->view('include/foot');
 	}
 	public function user()
 	{
@@ -79,14 +79,12 @@ class Main extends CI_Controller
    	}
    	public function chartpyramid()
 	{
-	   	$data['piramid'] = $this->M_back->getchart();
-	   	$this->load->view('back/chartpryramid',$data);
+	   	$this->load->view('back/chartpryramid');
 	   	
    	}
    	public function chartradar()
 	{
-	   	$data['radar'] = $this->M_back->getchart();
-	   	$this->load->view('back/chartradar',$data);
+	   	$this->load->view('back/chartradar');
 	   	
    	}
 	public function logout()
