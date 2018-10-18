@@ -8,6 +8,11 @@ class M_back extends CI_Model
 		$query = $this->db->get('tbl_user');
 		return $query->result();
 	}
+	function getData()
+	{
+		$query = $this->db->get('data');
+		return $query->result();
+	}
 	function delete_user($id)
 	{
 		$query = $this->db->delete('tbl_user',array(

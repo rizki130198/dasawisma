@@ -25,9 +25,15 @@
       </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse" href="<?php echo site_url('main/dashboard'); ?>">
+      <a class="nav-link" href="<?php echo site_url('main/dashboard'); ?>">
         <i class="menu-icon mdi mdi-television"></i>
         <span class="menu-title">Dashboard</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="<?php echo site_url('main/caridata'); ?>">
+        <i class="menu-icon mdi mdi-table"></i>
+        <span class="menu-title">Cari Data</span>
       </a>
     </li>
     <li class="nav-item">

@@ -24,17 +24,26 @@ class Main extends CI_Controller
 		$data['title'] = "Halaman Pengguna - PKK";
 		$data['menu'] = "Halaman Pengguna";
 		$data['user'] = $this->M_back->getUser();
-		$this->load->view('include/head');
+		$this->load->view('include/head',$data);
 		$this->load->view('back/user/user',$data);
-		$this->load->view('include/foot');
+		$this->load->view('include/footluar');
+	}
+	public function caridata()
+	{
+		$data['title'] = "Halaman Cari Data - PKK";
+		$data['menu'] = "Halaman Cari Data";
+		$data['data'] = $this->M_back->getData();
+		$this->load->view('include/head',$data);
+		$this->load->view('back/caridata',$data);
+		$this->load->view('include/footluar');
 	}
 	public function addUser()
 	{
 		$data['title'] = "Halaman Tambah Pengguna - PKK";
 		$data['menu'] = "Halaman Tambah Pengguna";
-		$this->load->view('include/head');
-		$this->load->view('back/user/add_user');
-		$this->load->view('include/foot');
+		$this->load->view('include/head',$data);
+		$this->load->view('back/user/add_user',$data);
+		$this->load->view('include/footluar');
 	}
 	public function edituser()
 	{
@@ -44,7 +53,7 @@ class Main extends CI_Controller
 	   	$data['edituser'] = $this->M_back->getEditUser($id);
 		$this->load->view('include/head',$data);
 		$this->load->view('back/user/edit_user',$data);
-		$this->load->view('include/foot');
+		$this->load->view('include/footluar');
 	}
 	public function actAddUser()
 	{
@@ -94,4 +103,4 @@ class Main extends CI_Controller
 		$sess = $this->session->sess_destroy();
 		redirect('welcome/login');
 	}
-}	
+}

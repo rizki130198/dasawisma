@@ -26,7 +26,7 @@
                 <div class="card-body">
                   <h3 class="card-title" style="font-size: 20px;">Pengguna</h3>
                   <div class="table-responsive">
-                    <table class="table table-striped datatable" style="width:100%">
+                    <table class="table dataTable no-footer table-striped datatable" style="width:100%">
                       <thead>
                         <tr>
                           <th>No</th>
