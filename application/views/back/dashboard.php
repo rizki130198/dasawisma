@@ -18,12 +18,21 @@
                     <div class="row">
                       <div class="col-lg-4">
                         <div class="input-group">
-                          <input type="text" id="awalradarchart" autocomplete="off" class="form-control" name="awal" placeholder="Dari Tanggal">
-                        </div>
+                        <select class="form-control" name="rt" id="rt" onchange="rukunt(this)">
+                          <option selected disabled>Filter Berdasarkan RT</option>
+                            <?php foreach ($rt as $key): ?>
+                              <option value="<?=$key->rt?>"><?=$key->rt?></option>
+                            <?php endforeach ?>
+                          </select></div>
                       </div> 
                       <div class="col-lg-4">
                         <div class="input-group">
-                          <input type="text" id="akhirradarchart" autocomplete="off" class="form-control" name="akhir" placeholder="Ke Tanggal">
+                          <select class="form-control" name="rt2" id="rt2">
+                            <option selected disabled>Filter Berdasarkan RT</option>
+                            <?php foreach ($rt as $key): ?>
+                              <option value="<?=$key->rt?>"><?=$key->rt?></option>
+                            <?php endforeach ?>
+                          </select>
                         </div>
                       </div>
                       <div class="col-lg-4">
@@ -33,6 +42,7 @@
                   </form>
                   <canvas class="radar" id="myChart" style="width: 300px; height: 100px;"></canvas>
                   <div class="radarbaru"></div>
+                  <div class="radarbaru2"></div>
                 </div>
               </div>
             </div>  
@@ -95,23 +105,33 @@
                 <div class="card-body">
                   <form action="javascript:void(0);" id="chartpyramid" method="POST">
                     <div class="row">
-                 <div class="col-lg-4">
-                  <div class="input-group">
-                    <input type="text" id="awalpyramidchart" autocomplete="off" class="form-control" name="awal" placeholder="Dari Tanggal">
-                  </div>
-                </div> 
-                <div class="col-lg-4">
-                  <div class="input-group">
-                    <input type="text" id="akhirpyramidchart" autocomplete="off" class="form-control" name="akhir" placeholder="Ke Tanggal">
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <button type="submit" class="btn btn-danger">Cari Chart</button>
-                </div>
-              </div>
-            </form>
+                      <div class="col-lg-4">
+                        <div class="input-group">
+                        <select class="form-control" name="rt" id="rt" onchange="rukunt(this)">
+                          <option selected disabled>Filter Berdasarkan RT</option>
+                            <?php foreach ($rt as $key): ?>
+                              <option value="<?=$key->rt?>"><?=$key->rt?></option>
+                            <?php endforeach ?>
+                          </select></div>
+                      </div> 
+                      <div class="col-lg-4">
+                        <div class="input-group">
+                          <select class="form-control" name="rt2" id="rt2">
+                            <option selected disabled>Filter Berdasarkan RT</option>
+                            <?php foreach ($rt as $key): ?>
+                              <option value="<?=$key->rt?>"><?=$key->rt?></option>
+                            <?php endforeach ?>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-lg-4">
+                        <button type="submit" class="btn btn-danger">Cari Chart</button>
+                      </div>
+                    </div>
+                  </form>
             <div class="pyramid" id="chart_div"></div>
             <div class="barupyramid"></div>
+            <div class="barupyramid2"></div>
           </div>
         </div>
       </div>
