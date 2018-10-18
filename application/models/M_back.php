@@ -28,7 +28,7 @@ class M_back extends CI_Model
 	public function getchart(){
 	    $awal = date('Y-m-d H:i:s',strtotime($this->input->post('awal')));
 	    $akhir = date('Y-m-d H:i:s',strtotime($this->input->post('akhir')));
-	    return $query = $this->db->query('SELECT * FROM data WHERE tanggal between "'.$awal.'" AND "'.$akhir.'" Group By kelurahan'); 
+	    return $query = $this->db->query('SELECT * FROM data WHERE tanggal between "'.$awal.'" AND "'.$akhir.'" Group By rw'); 
 	    
 	}
 	public function actionAddUser()

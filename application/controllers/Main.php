@@ -14,7 +14,7 @@ class Main extends CI_Controller
 	{
 		$data['title'] = "Halaman Dashboad - PKK";
 		$data['menu'] = "Halaman Dashboad";
-		$data['chart'] = $this->db->query('SELECT * FROM data Group By Kelurahan');
+		$data['chart'] = $this->db->get('data');
 		$this->load->view('include/head',$data);
 		$this->load->view('back/dashboard');
 		$this->load->view('include/foot',$data);
@@ -36,13 +36,13 @@ class Main extends CI_Controller
 		$this->load->view('include/head',$data);
 		$this->load->view('back/caridata',$data);
 		$this->load->view('include/footluar');
-	}
+	}	
 	public function addUser()
 	{
 		$data['title'] = "Halaman Tambah Pengguna - PKK";
 		$data['menu'] = "Halaman Tambah Pengguna";
-		$this->load->view('include/head',$data);
-		$this->load->view('back/user/add_user',$data);
+		$this->load->view('include/head');
+		$this->load->view('back/user/add_user');
 		$this->load->view('include/footluar');
 	}
 	public function edituser()
