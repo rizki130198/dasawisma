@@ -36,7 +36,7 @@
                 </div>
               </div>
             </div>  
-            <div class="col-lg-12 grid-margin stretch-card">
+<!--             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
                   <form action="javascript:void(0);" id="chartline" method="POST">
@@ -60,9 +60,9 @@
                   <div class="baru"></div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>  
-          <div class="row">  
+<!--           <div class="row">  
             <div class="col-md-12 grid-margin">
               <div class="card">
                 <div class="card-body">
@@ -88,7 +88,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="row">  
             <div class="col-md-12 grid-margin">
               <div class="card">

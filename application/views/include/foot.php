@@ -158,86 +158,54 @@
     });
 </script>
 <script type="text/javascript">
-	google.charts.load('current', {'packages':['corechart']});
-	google.charts.setOnLoadCallback(drawChartline);
+    google.charts.load('current', {'packages':['bar']});
+    google.charts.setOnLoadCallback(drawChartbar);
 
-	function drawChartline() {
-		var data = google.visualization.arrayToDataTable([
-			['Kelurahan', 'Jumlah Penduduk', 'Rata-Rata Pendapatan'],
-			<?php foreach($chart->result() as $datasql){ 
-		        $cijancok = $this->db->get_where('data',array('kelurahan'=>$datasql->kelurahan));
-		        foreach($cijancok->result() as $sql) { ?>
-		        ['<?=$sql->kelurahan?>',  <?=count($cijancok)?>,<?=$sql->pendapatan?>],
-		    <?php } } ?>
-			]);
+    function drawChartbar() {
+        var data = google.visualization.arrayToDataTable([
+            ['umur', 'Laki-Laki', 'Perempuan'],
+                // var_dump($umur);
+                <?php 
+                $anaklaki = $this->db->query('SELECT * FROM data where nama="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 0 and 10 ')->num_rows();
+                $anakperempuan = $this->db->query('SELECT * FROM data where nama="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 0 and 10 ')->num_rows();
+                $abglaki = $this->db->query('SELECT * FROM data where nama="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 11 and 20 ')->num_rows();
+                $abgperempuan = $this->db->query('SELECT * FROM data where nama="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 11 and 20 ')->num_rows();
+                $dewasalaki = $this->db->query('SELECT * FROM data where nama="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 21 and 30 ')->num_rows();
+                $dewasaperempuan = $this->db->query('SELECT * FROM data where nama="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 21 and 30 ')->num_rows();
+                $produktiflaki = $this->db->query('SELECT * FROM data where nama="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 31 and 40 ')->num_rows();
+                $produktifperempuan = $this->db->query('SELECT * FROM data where nama="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 31 and 40 ')->num_rows();
+                $lansialaki = $this->db->query('SELECT * FROM data where nama="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 41 and 50 ')->num_rows();
+                $lansiaperempuan = $this->db->query('SELECT * FROM data where nama="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 41 and 50 ')->num_rows();
+                $kakek = $this->db->query('SELECT * FROM data where nama="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 51 and 60 ')->num_rows();
+                $nenek = $this->db->query('SELECT * FROM data where nama="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 51 and 60 ')->num_rows();
+                $maumatilaki = $this->db->query('SELECT * FROM data where nama="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 61 and 100 ')->num_rows();
+                $maumatiperempuan = $this->db->query('SELECT * FROM data where nama="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 61 and 100 ')->num_rows();
+                ?>
+                <?php  ?>
+                ['61-100 Tahun',<?=$maumatilaki?>,  -<?=$maumatiperempuan?>],
+                ['51-60 Tahun',<?=$kakek?>,  -<?=$nenek?>],
+                ['41-50 Tahun',<?=$lansialaki?>, -<?=$lansiaperempuan?> ],
+                ['31-40 Tahun',<?=$produktiflaki?>, -<?=$produktifperempuan?> ],
+                ['21-30 Tahun',<?=$dewasalaki?>,  -<?=$dewasaperempuan?> ],
+                ['11-20 Tahun',<?=$abglaki?>,  -<?=$abgperempuan?> ],
+                ['0-10 Tahun',<?=$anaklaki?>,  -<?=$anakperempuan?> ],
+            ]);
 
-		var options = {
-			title: 'Perbandingan Jumlah Penduduk dan Jumlah Pendapatan',
-			curveType: 'function',
-			legend: { position: 'bottom' }
-		};
-
-		var chart = new google.visualization.LineChart(document.getElementById('line_top_x'));
-
-		chart.draw(data, options);
-	}
-</script>
-<script type="text/javascript">
-	google.charts.load('current', {'packages':['bar']});
-	google.charts.setOnLoadCallback(drawChartbar);
-
-	function drawChartbar() {
-		var data = google.visualization.arrayToDataTable([
-			['Kelurahan', 'Jumlah Penduduk', 'Pendapatan'],
-			<?php foreach($chart->result() as $datasql){ 
-		        $cijancok = $this->db->get_where('data',array('kelurahan'=>$datasql->kelurahan));
-		        foreach($cijancok->result() as $sql) { ?>
-		        ['<?=$sql->kelurahan?>',  10000,<?=$sql->pendapatan?>],
-		    <?php } } ?>
-			]);
-
-		var options = {
-			chart: {
-				title: 'Perbandingan',
-				subtitle: 'Jumlah Penduduk dan Jumlah Pendapatan',
-			},
-		};
-		
-
-		var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-
-		chart.draw(data, google.charts.Bar.convertOptions(options));
-	}
-</script>
-<script type="text/javascript">
-	google.charts.load('current', {'packages':['bar']});
-	google.charts.setOnLoadCallback(drawChartbar);
-
-	function drawChartbar() {
-		var data = google.visualization.arrayToDataTable([
-			['Kelurahan', 'Jumlah Penduduk', 'Pendapatan'],
-			<?php foreach($chart->result() as $datasql){ 
-		        $cijancok = $this->db->get_where('data',array('kelurahan'=>$datasql->kelurahan));
-		        foreach($cijancok->result() as $sql) { ?>
-		        ['<?=$sql->kelurahan?>',  10000,- <?=$sql->pendapatan?>],
-		    <?php } } ?>
-			]);
-
-		var options = {
-			chart: {
-				title: 'Perbandingan',
-				subtitle: 'Jumlah Penduduk dan Jumlah Pendapatan',
-			},
-			            	isStacked: true,
-            	hAxis: {
-            		format: ';'
-            	},
-            	vAxis: {
-            		direction: -1
-            	},
-			bars: 'horizontal'
-		};
-		
+        var options = {
+            chart: {
+                title: 'Perbandingan',
+                subtitle: 'Jumlah Perempuan dan Jumlah Laki Berdasarkan Kelurahan GAMBIR',
+            },
+              isStacked: true,
+                hAxis: {
+                    format: ';'
+                },
+                vAxis: {
+                    direction: -1
+                },
+            bars: 'horizontal'
+        };
+        
 
             var chart = new google.charts.Bar(document.getElementById('chart_div'));
 
@@ -252,13 +220,9 @@
 		{
             "type":"radar",
             "data":{
-                "labels":['Pendapatan', 'Jumlah Penduduk','Penduduk Sakit', ' Tua Renta'],
-                 "datasets": [
-                    <?php foreach($chart->result() as $datasql){ 
-                $cijancok = $this->db->get_where('data',array('kelurahan'=>$datasql->kelurahan));
-                foreach($cijancok->result() as $sql) { ?>
-                {
-                "label" : '<?= $sql->kelurahan ?>',
+                "labels":['Pendapatan 0- 5 Juta', 'Pendapatan 6-10 juta', 'Pendapatan 10-20 Juta', 'Jumlah Penduduk','Penduduk Sakit', ' Tua Renta', 'Belum Nikah', 'Sudah Nikah', 'Janda','DUDA'],
+                 "datasets": [{
+                "label" : 'GAMBIR',
                 "fill":true,
                     "backgroundColor":"rgba(255, 99, 132, 0.2)",
                     "borderColor":"rgb(255, 99, 132)",
@@ -266,10 +230,8 @@
                     "pointBorderColor":"#fff",
                     "pointHoverBackgroundColor":"#fff",
                     "pointHoverBorderColor":"rgb(255, 99, 132)",
-                "data": [90, 85,75, 69]
-            },
-            <?php } } ?>
-            ]
+                "data": [90,70 ,60,85,75, 69,100,120,20,30]
+            }],
         },
             "options":
             {
