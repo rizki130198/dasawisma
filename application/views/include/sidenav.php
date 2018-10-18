@@ -32,7 +32,7 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" href="<?php echo site_url('main/caridata'); ?>">
-        <i class="menu-icon mdi mdi-table"></i>
+        <i class="menu-icon mdi mdi-library-books"></i>
         <span class="menu-title">Cari Data</span>
       </a>
     </li>

@@ -13,7 +13,7 @@ class Main extends CI_Controller
 	public function dashboard()
 	{
 		$data['title'] = "Halaman Dashboad - PKK";
-		$data['menu'] = "Halaman Dashboad";
+		$data['menu'] = "Dashboad";
 		$data['rt'] = $this->M_back->getrt();
 		$this->load->view('include/head',$data);
 		$this->load->view('back/dashboard',$data);
@@ -22,7 +22,7 @@ class Main extends CI_Controller
 	public function user()
 	{
 		$data['title'] = "Halaman Pengguna - PKK";
-		$data['menu'] = "Halaman Pengguna";
+		$data['menu'] = "Manage User";
 		$data['user'] = $this->M_back->getUser();
 		$this->load->view('include/head',$data);
 		$this->load->view('back/user/user',$data);
@@ -31,7 +31,7 @@ class Main extends CI_Controller
 	public function caridata()
 	{
 		$data['title'] = "Halaman Cari Data - PKK";
-		$data['menu'] = "Halaman Cari Data";
+		$data['menu'] = "Cari Data";
 		$data['data'] = $this->M_back->getData();
 		$this->load->view('include/head',$data);
 		$this->load->view('back/caridata',$data);
@@ -40,15 +40,15 @@ class Main extends CI_Controller
 	public function addUser()
 	{
 		$data['title'] = "Halaman Tambah Pengguna - PKK";
-		$data['menu'] = "Halaman Tambah Pengguna";
-		$this->load->view('include/head');
-		$this->load->view('back/user/add_user');
+		$data['menu'] = "Tambah User";
+		$this->load->view('include/head',$data);
+		$this->load->view('back/user/add_user',$data);
 		$this->load->view('include/footluar');
 	}
 	public function edituser()
 	{
 		$data['title'] = "Halaman Edit Pengguna - PKK";
-		$data['menu'] = "Halaman Edit Pengguna";
+		$data['menu'] = "Edit User";
 		$id = $this->uri->segment(3);
 	   	$data['edituser'] = $this->M_back->getEditUser($id);
 		$this->load->view('include/head',$data);

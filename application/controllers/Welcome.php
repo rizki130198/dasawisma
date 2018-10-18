@@ -18,4 +18,10 @@ class Welcome extends CI_Controller {
 			throw new Exception("Error Processing Request", 1);
 		}
 	}
+	public function error()
+	{
+		$this->load->view('include/head');
+		$this->load->view('404');
+		$this->load->view('include/footluar');
+	}
 }
