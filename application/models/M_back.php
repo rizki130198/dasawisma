@@ -33,7 +33,7 @@ class M_back extends CI_Model
 	}
 	public function getrt()
 	{
-		$query = $this->db->query('SELECT * FROM data group By rt');
+		$query = $this->db->query('SELECT * FROM data group By rw');
 		return $query->result();
 	}
 	public function actionAddUser()

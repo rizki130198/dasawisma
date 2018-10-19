@@ -18,19 +18,19 @@
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="input-group">
-                        <select class="form-control" name="rt" id="rt" onchange="rukunt(this)">
-                          <option selected disabled>Filter Berdasarkan RT</option>
+                        <select class="form-control" name="rw" id="rw">
+                          <option selected disabled>Filter Berdasarkan RW</option>
                           <?php foreach ($rt as $key): ?>
-                            <option value="<?=$key->rt?>"><?=$key->rt?></option>
+                            <option value="<?=$key->rw?>"><?=$key->rw?></option>
                           <?php endforeach ?>
                         </select></div>
                       </div> 
                       <div class="col-lg-4">
                         <div class="input-group">
-                          <select class="form-control" name="rt2" id="rt2">
-                            <option selected disabled>Filter Berdasarkan RT</option>
+                          <select class="form-control" name="rw2" id="rw2">
+                            <option selected disabled>Filter Berdasarkan RW</option>
                             <?php foreach ($rt as $key): ?>
-                              <option value="<?=$key->rt?>"><?=$key->rt?></option>
+                              <option value="<?=$key->rw?>"><?=$key->rw?></option>
                             <?php endforeach ?>
                           </select>
                         </div>
@@ -108,35 +108,35 @@
                     <div class="row">
                       <div class="col-lg-4">
                         <div class="input-group">
-                          <select class="form-control" name="rt" id="rt" onchange="rukunt(this)">
-                            <option selected disabled>Filter Berdasarkan RT</option>
+                         <select class="form-control" name="rw" id="rw">
+                          <option selected disabled>Filter Berdasarkan RW</option>
+                          <?php foreach ($rt as $key): ?>
+                            <option value="<?=$key->rw?>"><?=$key->rw?></option>
+                          <?php endforeach ?>
+                        </select></div>
+                      </div> 
+                      <div class="col-lg-4">
+                        <div class="input-group">
+                          <select class="form-control" name="rw2" id="rw2">
+                            <option selected disabled>Filter Berdasarkan RW</option>
                             <?php foreach ($rt as $key): ?>
-                              <option value="<?=$key->rt?>"><?=$key->rt?></option>
+                              <option value="<?=$key->rw?>"><?=$key->rw?></option>
                             <?php endforeach ?>
-                          </select></div>
-                        </div> 
-                        <div class="col-lg-4">
-                          <div class="input-group">
-                            <select class="form-control" name="rt2" id="rt2">
-                              <option selected disabled>Filter Berdasarkan RT</option>
-                              <?php foreach ($rt as $key): ?>
-                                <option value="<?=$key->rt?>"><?=$key->rt?></option>
-                              <?php endforeach ?>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="col-lg-4">
-                          <button type="submit" class="btn btn-danger btn-block">Cari Chart</button>
+                          </select>
                         </div>
                       </div>
-                    </form>
-                    <div class="pyramid" id="chart_div"></div>
-                    <div class="barupyramid"></div>
-                    <div class="barupyramid2"></div>
-                  </div>
+                      <div class="col-lg-4">
+                        <button type="submit" class="btn btn-danger btn-block">Cari Chart</button>
+                      </div>
+                    </div>
+                  </form>
+                  <div class="pyramid" id="chart_div"></div>
+                  <div class="barupyramid"></div>
+                  <div class="barupyramid2"></div>
                 </div>
               </div>
             </div>
+          </div>
         <!-- <div class="row">  
           <div class="col-md-7 grid-margin">
             <div class="card">
