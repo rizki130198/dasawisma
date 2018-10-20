@@ -62,6 +62,31 @@ class M_back extends CI_Model
 		}
 		redirect('main/user');
 	}
+	public function actionCariData($jenis_kelamin, $rt, $rw, $kelurahan, $kecamatan, $kota, $tanggal_lahir, $status_perkawinan, $pendapatan, $kartu_lansia)
+	{
+    	$this->db->select('*');
+	    $this->db->from('data');
+	    if(empty($jenis_kelamin)) {
+	        $this->db->group_start();
+	        $this->db->like('jenis_kelamin', $jenis_kelamin);
+	        $this->db->like('rt', $rt);
+	        $this->db->like('rw', $rw);
+	        $this->db->like('kelurahan', $kelurahan);
+	        $this->db->like('kecamatan', $kecamatan);
+	        $this->db->like('kota', $kota);
+	        $this->db->like('tanggal_lahir', $tanggal_lahir);
+	        $this->db->like('status_perkawinan', $status_perkawinan);
+	        $this->db->like('pendapatan', $pendapatan);
+	        $this->db->like('kartu_lansia', $kartu_lansia);
+	        $this->db->group_end();
+	    }
+	    $this->db->like('jenis_kelamin', $jenis_kelamin);
+	    $this->db->like('rt', $rt);
+	        $this->db->like('rw', $rw);
+	    // $this->db->or_like('rt', $rt);
+
+	    return $this->db->get()->result();
+	}	
 	function getEditUser($id)
 	{
 		$query = $this->db->get_where('tbl_user',array('id'=>$id))->result();

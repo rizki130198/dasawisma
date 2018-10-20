@@ -32,11 +32,50 @@ class Main extends CI_Controller
 	{
 		$data['title'] = "Halaman Cari Data - PKK";
 		$data['menu'] = "Cari Data";
-		$data['data'] = $this->M_back->getData();
 		$this->load->view('include/head',$data);
-		$this->load->view('back/caridata',$data);
+		$this->load->view('back/caridata');
 		$this->load->view('include/footluar');
-	}	
+	}
+	public function hasil_cari()
+   	{
+   		$data['title'] = "Halaman Hasil Cari Data - PKK";
+		$data['menu'] = "Cari Data";
+   		$jenis_kelamin = $this->input->post('jenis_kelamin');
+    	$rt = $this->input->post('rt');
+    	$rw = $this->input->post('rw');
+    	$kelurahan = $this->input->post('kelurahan');
+    	$kecamatan = $this->input->post('kecamatan');
+    	$kota = $this->input->post('kota');
+    	$tanggal_lahir = $this->input->post('tanggal_lahir');
+    	$status_perkawinan = $this->input->post('status_perkawinan');
+    	$pendapatan = $this->input->post('pendapatan');
+    	$kartu_lansia = $this->input->post('kartu_lansia');
+	   	$data['caridata']=$this->M_back->actionCariData(
+	   		$jenis_kelamin, 
+	   		$rt, 
+	   		$rw, 
+	   		$kelurahan, 
+	   		$kecamatan,
+	   		$kota,
+	   		$tanggal_lahir,
+	   		$status_perkawinan,
+	   		$pendapatan,
+	   		$kartu_lansia
+	   	);
+	   	$this->load->view('include/head',$data);
+	   	$this->load->view('back/hasilcari',$data);
+		$this->load->view('include/footluar');
+
+   	}	
+	// public function hasil_cari()
+	// {
+	// 	$data['title'] = "Halaman Hasil Cari Data - PKK";
+	// 	$data['menu'] = "Cari Data";
+	// 	$data['data'] = $this->M_back->getData();
+	// 	$this->load->view('include/head',$data);
+	// 	$this->load->view('back/hasilcari',$data);
+	// 	$this->load->view('include/footluar');
+	// }	
 	public function addUser()
 	{
 		$data['title'] = "Halaman Tambah Pengguna - PKK";
@@ -58,6 +97,10 @@ class Main extends CI_Controller
 	public function actAddUser()
 	{
 	   	$this->M_back->actionAddUser();
+   	}
+   	public function actCariData()
+   	{
+	   	$this->M_back->actionCariData();
    	}
    	public function actEditUser()
 	{   	
