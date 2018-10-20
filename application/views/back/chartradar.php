@@ -12,31 +12,31 @@
 </div>
 <script type="text/javascript">
     <?php 
-    $post = $this->input->post('rt');
-    $penduduk = $this->db->query('SELECT * FROM data where rt="'.$post.'" ')->num_rows();
-    $jomblo = $this->db->query('SELECT * FROM data where status_kawin="BELUM KAWIN" AND rt="'.$post.'"')->num_rows(); 
-    $nikah = $this->db->query('SELECT * FROM data where status_kawin="KAWIN" AND rt="'.$post.'"')->num_rows(); 
-    $janda = $this->db->query('SELECT * FROM data where status_kawin="JANDA" AND rt="'.$post.'"')->num_rows(); 
-    $duda = $this->db->query('SELECT * FROM data where status_kawin="DUDA" AND rt="'.$post.'"')->num_rows(); 
-    $getpendapatan = $this->db->query('SELECT * FROM data where pendapatan="0 JT - 5 JT" OR pendapatan = " " AND rt="'.$post.'"')->num_rows(); 
-    $getpendapatan2 = $this->db->query('SELECT * FROM data where pendapatan="6 JT-10 JT" AND rt="'.$post.'"')->num_rows(); 
-    $getpendapatan3 = $this->db->query('SELECT * FROM data where pendapatan!="6 JT-10 JT" AND pendapatan!="0 JT - 5 JT" AND pendapatan != " " AND rt="'.$post.'"')->num_rows(); 
-    $maumati = $this->db->query('SELECT * FROM data where (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 50 and 100 AND rt="'.$post.'"')->num_rows(); ?>
+    
+        $post = $this->input->post('rw');
+        $getpendapatan = $this->db->query('SELECT * FROM data where pendapatan="0 JT-5 JT"  AND rw="'.$post.'"')->num_rows();
+        $bangunan = $this->db->query('SELECT * FROM data where kondisi_bangunan = "TIDAK LAYAK HUNI"  AND rw="'.$post.'"')->num_rows();
+        $sekolah = $this->db->query('SELECT * FROM data where putus_sekolah="YA"  AND rw="'.$post.'"')->num_rows(); 
+        $sumur = $this->db->query('SELECT * FROM data where sumur_air_tanah="YA"  AND rw="'.$post.'"')->num_rows(); 
+        $pdam = $this->db->query('SELECT * FROM data where pdam="YA"  AND rw="'.$post.'"')->num_rows(); 
+        $medis = $this->db->query('SELECT * FROM data where riwayat_medis!="TIDAK"  AND rw="'.$post.'"')->num_rows(); 
+        $balita = $this->db->query('SELECT * FROM data where (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 0 and 5   AND rw="'.$post.'"')->num_rows();
+        $hamil = $this->db->query('SELECT * FROM data where status_ibu="HAMIL"  AND rw="'.$post.'"')->num_rows(); ?>
     new Chart(document.getElementById("myChartbaru"),
     {
-        "type":"radar",
-        "data":{
-            "labels":['Pendapatan 0- 5 Juta', 'Pendapatan 6-10 juta', 'Pendapatan 10-20 Juta', 'Jumlah Penduduk', 'Tua Renta', 'Belum Nikah', 'Sudah Nikah', 'Janda','DUDA'],
-            "datasets": [{
-                "label" : '<?=$post?>',
+            "type":"radar",
+            "data":{
+                "labels":['Pendapatan 0- 5 Juta', 'Tidak Layak Huni', 'Putus Sekolah', 'Sumber Air Tanah', 'Sumber PDAM', 'Ada Riwayat Medis','Usia Balita 0-5 thn','Ibu Hamil'],
+                 "datasets": [{
+                "label" : 'Rw <?=$post?>',
                 "fill":true,
-                "backgroundColor":"rgba(255, 99, 132, 0.2)",
-                "borderColor":"rgb(255, 99, 132)",
-                "pointBackgroundColor":"rgb(255, 99, 132)",
-                "pointBorderColor":"#fff",
-                "pointHoverBackgroundColor":"#fff",
-                "pointHoverBorderColor":"rgb(255, 99, 132)",
-                "data": [<?=$getpendapatan?>,<?=$getpendapatan2?> ,<?=$getpendapatan3?>,<?=$penduduk?>, <?=$maumati?>,<?=$jomblo?>,<?=$nikah?>,<?=$janda?>,<?=$duda?>]
+                    "backgroundColor":"rgba(255, 99, 132, 0.2)",
+                    "borderColor":"rgb(255, 99, 132)",
+                    "pointBackgroundColor":"rgb(255, 99, 132)",
+                    "pointBorderColor":"#fff",
+                    "pointHoverBackgroundColor":"#fff",
+                    "pointHoverBorderColor":"rgb(255, 99, 132)",
+                "data": [<?=$getpendapatan?>,<?=$bangunan?> ,<?=$sekolah?>,<?=$sumur?>, <?=$pdam?>,<?=$medis?>,<?=$balita?>,<?=$hamil?>]
             }],
         },
         "options":
@@ -52,45 +52,44 @@
         }
     });
 </script>
-<script type="text/javascript">
-    <?php 
-    $post2 = $this->input->post('rt2');
-    $penduduk = $this->db->query('SELECT * FROM data where rt="'.$post2.'"')->num_rows();
-    $jomblo = $this->db->query('SELECT * FROM data where status_kawin="BELUM KAWIN" AND rt="'.$post2.'"')->num_rows(); 
-    $nikah = $this->db->query('SELECT * FROM data where status_kawin="KAWIN" AND rt="'.$post2.'"')->num_rows(); 
-    $janda = $this->db->query('SELECT * FROM data where status_kawin="JANDA" AND rt="'.$post2.'"')->num_rows(); 
-    $duda = $this->db->query('SELECT * FROM data where status_kawin="DUDA" AND rt="'.$post2.'"')->num_rows(); 
-    $getpendapatan = $this->db->query('SELECT * FROM data where pendapatan="0 JT - 5 JT" OR pendapatan = " " AND rt="'.$post2.'"')->num_rows(); 
-    $getpendapatan2 = $this->db->query('SELECT * FROM data where pendapatan="6 JT-10 JT" AND rt="'.$post2.'"')->num_rows(); 
-    $getpendapatan3 = $this->db->query('SELECT * FROM data where pendapatan!="6 JT-10 JT" AND pendapatan!="0 JT - 5 JT" AND pendapatan != " " AND rt="'.$post2.'"')->num_rows(); 
-    $maumati = $this->db->query('SELECT * FROM data where (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 50 and 100 AND rt="'.$post2.'"')->num_rows(); ?>
-    new Chart(document.getElementById("myChartbaru2"),
-    {
-        "type":"radar",
-        "data":{
-            "labels":['Pendapatan 0- 5 Juta', 'Pendapatan 6-10 juta', 'Pendapatan 10-20 Juta', 'Jumlah Penduduk', 'Tua Renta', 'Belum Nikah', 'Sudah Nikah', 'Janda','DUDA'],
-            "datasets": [{
-                "label" : '<?=$post2?>',
+    <script type="text/javascript">
+        <?php 
+        $post2 = $this->input->post('rw2');
+        $getpendapatan = $this->db->query('SELECT * FROM data where pendapatan="0 JT-5 JT"  AND rw="'.$post2.'"')->num_rows();
+        $bangunan = $this->db->query('SELECT * FROM data where kondisi_bangunan = "TIDAK LAYAK HUNI"  AND rw="'.$post2.'"')->num_rows();
+        $sekolah = $this->db->query('SELECT * FROM data where putus_sekolah="YA"  AND rw="'.$post2.'"')->num_rows(); 
+        $sumur = $this->db->query('SELECT * FROM data where sumur_air_tanah="YA"  AND rw="'.$post2.'"')->num_rows(); 
+        $pdam = $this->db->query('SELECT * FROM data where pdam="YA"  AND rw="'.$post2.'"')->num_rows(); 
+        $medis = $this->db->query('SELECT * FROM data where riwayat_medis!="TIDAK"  AND rw="'.$post2.'"')->num_rows(); 
+        $balita = $this->db->query('SELECT * FROM data where (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 0 and 5   AND rw="'.$post2.'"')->num_rows();
+        $hamil = $this->db->query('SELECT * FROM data where status_ibu="HAMIL"  AND rw="'.$post2.'"')->num_rows(); ?>
+        new Chart(document.getElementById("myChartbaru2"),
+        {
+            "type":"radar",
+            "data":{
+                "labels":['Pendapatan 0- 5 Juta', 'Tidak Layak Huni', 'Putus Sekolah', 'Sumber Air Tanah', 'Sumber PDAM', 'Ada Riwayat Medis','Usia Balita 0-5 thn','Ibu Hamil'],
+                 "datasets": [{
+                "label" : 'RW <?=$post2?>',
                 "fill":true,
-                "backgroundColor":"rgba(255, 99, 132, 0.2)",
-                "borderColor":"rgb(255, 99, 132)",
-                "pointBackgroundColor":"rgb(255, 99, 132)",
-                "pointBorderColor":"#fff",
-                "pointHoverBackgroundColor":"#fff",
-                "pointHoverBorderColor":"rgb(255, 99, 132)",
-                "data": [<?=$getpendapatan?>,<?=$getpendapatan2?> ,<?=$getpendapatan3?>,<?=$penduduk?>, <?=$maumati?>,<?=$jomblo?>,<?=$nikah?>,<?=$janda?>,<?=$duda?>]
+                    "backgroundColor":"rgba(255, 99, 132, 0.2)",
+                    "borderColor":"rgb(255, 99, 132)",
+                    "pointBackgroundColor":"rgb(255, 99, 132)",
+                    "pointBorderColor":"#fff",
+                    "pointHoverBackgroundColor":"#fff",
+                    "pointHoverBorderColor":"rgb(255, 99, 132)",
+                "data": [<?=$getpendapatan?>,<?=$bangunan?> ,<?=$sekolah?>,<?=$sumur?>, <?=$pdam?>,<?=$medis?>,<?=$balita?>,<?=$hamil?>]
             }],
         },
-        "options":
-        {
-            "elements":
+            "options":
             {
-                "line":
+                "elements":
                 {
-                    "tension":0,
-                    "borderWidth":3
+                    "line":
+                    {
+                        "tension":0,
+                        "borderWidth":3
+                    }
                 }
             }
-        }
-    });
+        });
 </script>

@@ -37,45 +37,15 @@ class Main extends CI_Controller
 		$this->load->view('include/footluar');
 	}
 	public function hasil_cari()
-   	{
-   		$data['title'] = "Halaman Hasil Cari Data - PKK";
-		$data['menu'] = "Cari Data";
-   		$jenis_kelamin = $this->input->post('jenis_kelamin');
-    	$rt = $this->input->post('rt');
-    	$rw = $this->input->post('rw');
-    	$kelurahan = $this->input->post('kelurahan');
-    	$kecamatan = $this->input->post('kecamatan');
-    	$kota = $this->input->post('kota');
-    	$tanggal_lahir = $this->input->post('tanggal_lahir');
-    	$status_perkawinan = $this->input->post('status_perkawinan');
-    	$pendapatan = $this->input->post('pendapatan');
-    	$kartu_lansia = $this->input->post('kartu_lansia');
-	   	$data['caridata']=$this->M_back->actionCariData(
-	   		$jenis_kelamin, 
-	   		$rt, 
-	   		$rw, 
-	   		$kelurahan, 
-	   		$kecamatan,
-	   		$kota,
-	   		$tanggal_lahir,
-	   		$status_perkawinan,
-	   		$pendapatan,
-	   		$kartu_lansia
-	   	);
-	   	$this->load->view('include/head',$data);
-	   	$this->load->view('back/hasilcari',$data);
+	{
+		$data['title'] = "Halaman Hasil Cari Data - PKK";
+		$data['menu'] = "Cari Data";	
+		$keyword = $this->input->post('keyword');
+		$data['caridata']=$this->M_back->actionCariData($keyword);
+		$this->load->view('include/head',$data);
+		$this->load->view('back/hasilcari',$data);
 		$this->load->view('include/footluar');
-
-   	}	
-	// public function hasil_cari()
-	// {
-	// 	$data['title'] = "Halaman Hasil Cari Data - PKK";
-	// 	$data['menu'] = "Cari Data";
-	// 	$data['data'] = $this->M_back->getData();
-	// 	$this->load->view('include/head',$data);
-	// 	$this->load->view('back/hasilcari',$data);
-	// 	$this->load->view('include/footluar');
-	// }	
+	}	
 	public function addUser()
 	{
 		$data['title'] = "Halaman Tambah Pengguna - PKK";
@@ -89,56 +59,56 @@ class Main extends CI_Controller
 		$data['title'] = "Halaman Edit Pengguna - PKK";
 		$data['menu'] = "Edit User";
 		$id = $this->uri->segment(3);
-	   	$data['edituser'] = $this->M_back->getEditUser($id);
+		$data['edituser'] = $this->M_back->getEditUser($id);
 		$this->load->view('include/head',$data);
 		$this->load->view('back/user/edit_user',$data);
 		$this->load->view('include/footluar');
 	}
 	public function actAddUser()
 	{
-	   	$this->M_back->actionAddUser();
-   	}
-   	public function actCariData()
-   	{
-	   	$this->M_back->actionCariData();
-   	}
-   	public function actEditUser()
+		$this->M_back->actionAddUser();
+	}
+	public function actCariData()
+	{
+		$this->M_back->actionCariData();
+	}
+	public function actEditUser()
 	{   	
-	   	$val = $this->M_back->setEditUser();
-	   	if ($val =="") {
+		$val = $this->M_back->setEditUser();
+		if ($val =="") {
 			$this->session->set_flashdata('sukses', 'Data berhasil di ubah');
 		}else{
 			$this->session->set_flashdata('gagal', 'Data gagal di ubah');
 		}
-   		redirect(site_url('main/user'));
+		redirect(site_url('main/user'));
 	}
 	public function deleteUser()
 	{
-	   	$id = $this->uri->segment(3);
-	   	$this->M_back->delete_user($id);
+		$id = $this->uri->segment(3);
+		$this->M_back->delete_user($id);
 	}
 	public function chartline()
 	{
-	   	$data['line'] = $this->M_back->getchart();
-	   	$this->load->view('back/chartline',$data);
-	   	
-   	}
-   	public function chartcolum()
+		$data['line'] = $this->M_back->getchart();
+		$this->load->view('back/chartline',$data);
+
+	}
+	public function chartcolum()
 	{
-	   	$data['colom'] = $this->M_back->getchart();
-	   	$this->load->view('back/chartcolom',$data);
-	   	
-   	}
-   	public function chartpyramid()
+		$data['colom'] = $this->M_back->getchart();
+		$this->load->view('back/chartcolom',$data);
+
+	}
+	public function chartpyramid()
 	{
-	   	$this->load->view('back/chartpryramid');
-	   	
-   	}
-   	public function chartradar()
+		$this->load->view('back/chartpryramid');
+
+	}
+	public function chartradar()
 	{
-	   	$this->load->view('back/chartradar');
-	   	
-   	}
+		$this->load->view('back/chartradar');
+
+	}
 	public function logout()
 	{
 		$sess = $this->session->sess_destroy();

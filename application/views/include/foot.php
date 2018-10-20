@@ -11,9 +11,6 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.es.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 <script type="text/javascript">
-    function rt() {
-        console.log(('#rt').val());
-    }
     $("#chartline").submit(function() {
         var dt = $("#chartline").serialize();
         $.ajax({
@@ -166,8 +163,8 @@
             });
     });
 </script>
-<script type="text/javascript">
-    google.charts.load('current', {'packages':['bar']});
+    <script type="text/javascript">
+        google.charts.load("current", {packages:["corechart","bar"]});
     google.charts.setOnLoadCallback(drawChartbar);
 
     function drawChartbar() {
@@ -175,31 +172,69 @@
             ['umur', 'Laki-Laki', 'Perempuan'],
                 // var_dump($umur);
                 <?php 
-                $anaklaki = $this->db->query('SELECT * FROM data where nama="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 0 and 10 ')->num_rows();
-                $anakperempuan = $this->db->query('SELECT * FROM data where nama="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 0 and 10 ')->num_rows();
-                $abglaki = $this->db->query('SELECT * FROM data where nama="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 11 and 20 ')->num_rows();
-                $abgperempuan = $this->db->query('SELECT * FROM data where nama="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 11 and 20 ')->num_rows();
-                $dewasalaki = $this->db->query('SELECT * FROM data where nama="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 21 and 30 ')->num_rows();
-                $dewasaperempuan = $this->db->query('SELECT * FROM data where nama="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 21 and 30 ')->num_rows();
-                $produktiflaki = $this->db->query('SELECT * FROM data where nama="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 31 and 40 ')->num_rows();
-                $produktifperempuan = $this->db->query('SELECT * FROM data where nama="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 31 and 40 ')->num_rows();
-                $lansialaki = $this->db->query('SELECT * FROM data where nama="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 41 and 50 ')->num_rows();
-                $lansiaperempuan = $this->db->query('SELECT * FROM data where nama="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 41 and 50 ')->num_rows();
-                $kakek = $this->db->query('SELECT * FROM data where nama="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 51 and 60 ')->num_rows();
-                $nenek = $this->db->query('SELECT * FROM data where nama="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 51 and 60 ')->num_rows();
-                $maumatilaki = $this->db->query('SELECT * FROM data where nama="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 61 and 100 ')->num_rows();
-                $maumatiperempuan = $this->db->query('SELECT * FROM data where nama="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 61 and 100 ')->num_rows();
+                $balitalaki = $this->db->query('SELECT * FROM data where jenis_kelamin="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 0 and 5 ')->num_rows();
+                $balitaperempuan = $this->db->query('SELECT * FROM data where jenis_kelamin="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 0 and 5 ')->num_rows();
+                $analaki = $this->db->query('SELECT * FROM data where jenis_kelamin="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 6 and 10 ')->num_rows();
+                $anakperempuan = $this->db->query('SELECT * FROM data where jenis_kelamin="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 6 and 10 ')->num_rows();
+                $abglaki = $this->db->query('SELECT * FROM data where jenis_kelamin="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 11 and 15 ')->num_rows();
+                $abgperempuan = $this->db->query('SELECT * FROM data where jenis_kelamin="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 11 and 15 ')->num_rows();
+                $mau20laki = $this->db->query('SELECT * FROM data where jenis_kelamin="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 16 and 20 ')->num_rows();
+                $mau20perempuan = $this->db->query('SELECT * FROM data where jenis_kelamin="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 16 and 20 ')->num_rows();
+                $usialaki = $this->db->query('SELECT * FROM data where jenis_kelamin="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 21 and 25 ')->num_rows();
+                $usiaperempuan = $this->db->query('SELECT * FROM data where jenis_kelamin="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 21 and 25 ')->num_rows();
+                $dewasalaki = $this->db->query('SELECT * FROM data where jenis_kelamin="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 26 and 30 ')->num_rows();
+                $dewasaperempuan = $this->db->query('SELECT * FROM data where jenis_kelamin="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 26 and 30 ')->num_rows();
+                $om = $this->db->query('SELECT * FROM data where jenis_kelamin="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 31 and 35 ')->num_rows();
+                $tante = $this->db->query('SELECT * FROM data where jenis_kelamin="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 31 and 35 ')->num_rows();
+                $produktiflaki = $this->db->query('SELECT * FROM data where jenis_kelamin="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 36 and 40 ')->num_rows();
+                $produktifperempuan = $this->db->query('SELECT * FROM data where jenis_kelamin="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 36 and 40 ')->num_rows();
+                $laki = $this->db->query('SELECT * FROM data where jenis_kelamin="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 41 and 45 ')->num_rows();
+                $perempuan = $this->db->query('SELECT * FROM data where jenis_kelamin="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 41 and 45 ')->num_rows();
+                $maujadikakek = $this->db->query('SELECT * FROM data where jenis_kelamin="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 46 and 50 ')->num_rows();
+                $maujadinenek = $this->db->query('SELECT * FROM data where jenis_kelamin="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 46 and 50 ')->num_rows();
+                $kakek = $this->db->query('SELECT * FROM data where jenis_kelamin="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 51 and 55 ')->num_rows();
+                $nenek = $this->db->query('SELECT * FROM data where jenis_kelamin="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 51 and 55 ')->num_rows();
+                $pensiunlaki = $this->db->query('SELECT * FROM data where jenis_kelamin="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 56 and 60 ')->num_rows();
+                $pensiunperempuan = $this->db->query('SELECT * FROM data where jenis_kelamin="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 56 and 60 ')->num_rows();
+                $lansialaki = $this->db->query('SELECT * FROM data where jenis_kelamin="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 61 and 65 ')->num_rows();
+                $lansiaperempuan = $this->db->query('SELECT * FROM data where jenis_kelamin="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 61 and 65 ')->num_rows();
+                $maumatilaki = $this->db->query('SELECT * FROM data where jenis_kelamin="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 66 and 70 ')->num_rows();
+                $maumatiperempuan = $this->db->query('SELECT * FROM data where jenis_kelamin="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 66 and 70 ')->num_rows();
+                $batasumurlaki = $this->db->query('SELECT * FROM data where jenis_kelamin="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 71 and 75 ')->num_rows();
+                $batasumurperempuan = $this->db->query('SELECT * FROM data where jenis_kelamin="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 71 and 75 ')->num_rows();
+                $batasumurlaki2 = $this->db->query('SELECT * FROM data where jenis_kelamin="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 76 and 80 ')->num_rows();
+                $batasumurperempuan2 = $this->db->query('SELECT * FROM data where jenis_kelamin="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 76 and 80 ')->num_rows();
+                $batasumurlaki3 = $this->db->query('SELECT * FROM data where jenis_kelamin="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 81 and 85 ')->num_rows();
+                $batasumurperempuan3 = $this->db->query('SELECT * FROM data where jenis_kelamin="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 81 and 85 ')->num_rows();
+                $batasumurlaki4 = $this->db->query('SELECT * FROM data where jenis_kelamin="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 86 and 90 ')->num_rows();
+                $batasumurperempuan4 = $this->db->query('SELECT * FROM data where jenis_kelamin="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 86 and 90 ')->num_rows();
+                $batasumurlaki5 = $this->db->query('SELECT * FROM data where jenis_kelamin="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 91 and 99 ')->num_rows();
+                $batasumurperempuan5 = $this->db->query('SELECT * FROM data where jenis_kelamin="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 91 and 99 ')->num_rows();
+
                 ?>
-                ['61-100 Tahun',<?=$maumatilaki?>,  -<?=$maumatiperempuan?>],
-                ['51-60 Tahun',<?=$kakek?>,  -<?=$nenek?>],
-                ['41-50 Tahun',<?=$lansialaki?>, -<?=$lansiaperempuan?> ],
-                ['31-40 Tahun',<?=$produktiflaki?>, -<?=$produktifperempuan?> ],
-                ['21-30 Tahun',<?=$dewasalaki?>,  -<?=$dewasaperempuan?> ],
-                ['11-20 Tahun',<?=$abglaki?>,  -<?=$abgperempuan?> ],
-                ['0-10 Tahun',<?=$anaklaki?>,  -<?=$anakperempuan?> ],
+                 ['91-95 Tahun',<?=$batasumurlaki5?>,  <?=($batasumurperempuan5==0)?0:-$batasumurperempuan5?> ],
+                ['86-90 Tahun',<?=$batasumurlaki4?>,  <?=($batasumurperempuan4==0)?0:-$batasumurperempuan4?> ],
+                ['81-85 Tahun',<?=$batasumurlaki3?>,  <?=($batasumurperempuan3==0)?0:-$batasumurperempuan3?> ],
+                ['76-80 Tahun',<?=$batasumurlaki2?>,  <?=($batasumurperempuan2==0)?0:-$batasumurperempuan2?> ],
+                ['71-75 Tahun',<?=$batasumurlaki?>,  <?=($batasumurperempuan==0)?0:-$batasumurperempuan?> ],
+                ['66-70 Tahun',<?=$maumatilaki?>,  <?=($maumatiperempuan==0)?0:-$maumatiperempuan?> ],
+                ['61-65 Tahun',<?=$lansialaki?>,  <?=($lansiaperempuan==0)?0:-$lansiaperempuan?> ],
+                ['55-60 Tahun',<?=$pensiunlaki?>,  <?=($pensiunperempuan==0)?0:-$pensiunperempuan?> ],
+                ['51-55 Tahun',<?=$kakek?>,  <?=($nenek==0)?0:-$nenek?> ],
+                ['46-50 Tahun',<?=$maujadikakek?>, <?=($maumatiperempuan==0)?0:-$maumatiperempuan?> ],
+                ['41-45 Tahun',<?=$laki?>, <?=($perempuan==0)?0:-$perempuan?> ],
+                ['36-40 Tahun',<?=$produktiflaki?>, <?=($produktifperempuan==0)?0:-$produktifperempuan?> ],
+                ['31-35 Tahun',<?=$om?>, <?=($tante==0)?0:-$tante?> ],
+                ['25-30 Tahun',<?=$dewasalaki?>,  <?=($dewasaperempuan==0)?0:-$dewasaperempuan?> ],
+                ['21-25 Tahun',<?=$usialaki?>,  <?=($usiaperempuan==0)?0:-$usiaperempuan?> ],
+                ['15-20 Tahun',<?=$mau20laki?>,  <?=($mau20perempuan==0)?0:-$mau20perempuan?> ],
+                ['11-15 Tahun',<?=$abglaki?>,  <?=($abgperempuan==0)?0:-$abgperempuan?> ],
+                ['6-10 Tahun',<?=$analaki?>,  <?=($anakperempuan==0)?0:-$anakperempuan?> ],
+                ['0-5 Tahun',<?=$balitalaki?>,  <?=($balitaperempuan==0)?0:-$balitaperempuan?> ]
             ]);
 
         var options = {
+            height: 450,
             chart: {
                 title: 'Perbandingan',
                 subtitle: 'Jumlah Perempuan dan Jumlah Laki Berdasarkan Kelurahan GAMBIR',
@@ -211,9 +246,13 @@
                 vAxis: {
                     direction: -1
                 },
-            bars: 'horizontal'
+            bars: 'horizontal',
         };
-        
+        var formatter = new google.visualization.NumberFormat({
+                pattern: ';'
+            });
+ 
+            formatter.format(data, 2)
 
             var chart = new google.charts.Bar(document.getElementById('chart_div'));
 
@@ -224,20 +263,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script type="text/javascript">
         <?php 
-        $penduduk = $this->db->query('SELECT * FROM data')->num_rows();
-        $jomblo = $this->db->query('SELECT * FROM data where status_kawin="BELUM KAWIN"')->num_rows(); 
-        $nikah = $this->db->query('SELECT * FROM data where status_kawin="KAWIN"')->num_rows(); 
-        $janda = $this->db->query('SELECT * FROM data where status_kawin="JANDA"')->num_rows(); 
-        $duda = $this->db->query('SELECT * FROM data where status_kawin="DUDA"')->num_rows(); 
-        $getpendapatan = $this->db->query('SELECT * FROM data where pendapatan="0 JT - 5 JT" OR pendapatan = " "')->num_rows(); 
-        $getpendapatan2 = $this->db->query('SELECT * FROM data where pendapatan="6 JT-10 JT"')->num_rows(); 
-        $getpendapatan3 = $this->db->query('SELECT * FROM data where pendapatan!="6 JT-10 JT" AND pendapatan!="0 JT - 5 JT" AND pendapatan != " "')->num_rows(); 
-        $maumati = $this->db->query('SELECT * FROM data where (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 50 and 100 ')->num_rows(); ?>
+        $getpendapatan = $this->db->query('SELECT * FROM data where pendapatan="0 JT-5 JT"')->num_rows();
+        $bangunan = $this->db->query('SELECT * FROM data where kondisi_bangunan = "TIDAK LAYAK HUNI"')->num_rows();
+        $sekolah = $this->db->query('SELECT * FROM data where putus_sekolah="YA"')->num_rows(); 
+        $sumur = $this->db->query('SELECT * FROM data where sumur_air_tanah="YA"')->num_rows(); 
+        $pdam = $this->db->query('SELECT * FROM data where pdam="YA"')->num_rows(); 
+        $medis = $this->db->query('SELECT * FROM data where riwayat_medis!="TIDAK"')->num_rows(); 
+        $balita = $this->db->query('SELECT * FROM data where (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 0 and 5 ')->num_rows();
+        $hamil = $this->db->query('SELECT * FROM data where status_ibu="HAMIL"')->num_rows(); ?>
     	new Chart(document.getElementById("myChart"),
 		{
             "type":"radar",
             "data":{
-                "labels":['Pendapatan 0- 5 Juta', 'Pendapatan 6-10 juta', 'Pendapatan 10-20 Juta', 'Jumlah Penduduk', 'Tua Renta', 'Belum Nikah', 'Sudah Nikah', 'Janda','DUDA'],
+                "labels":['Pendapatan 0- 5 Juta', 'Tidak Layak Huni', 'Putus Sekolah', 'Sumber Air Tanah', 'Sumber PDAM', 'Ada Riwayat Medis','Usia Balita 0-5 thn','Ibu Hamil'],
                  "datasets": [{
                 "label" : 'GAMBIR',
                 "fill":true,
@@ -247,7 +285,7 @@
                     "pointBorderColor":"#fff",
                     "pointHoverBackgroundColor":"#fff",
                     "pointHoverBorderColor":"rgb(255, 99, 132)",
-                "data": [<?=$getpendapatan?>,<?=$getpendapatan2?> ,<?=$getpendapatan3?>,700, <?=$maumati?>,<?=$jomblo?>,<?=$nikah?>,<?=$janda?>,<?=$duda?>]
+                "data": [<?=$getpendapatan?>,<?=$bangunan?> ,<?=$sekolah?>,<?=$sumur?>, <?=$pdam?>,<?=$medis?>,<?=$balita?>,<?=$hamil?>]
             }],
         },
             "options":

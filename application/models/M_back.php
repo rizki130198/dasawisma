@@ -26,14 +26,14 @@ class M_back extends CI_Model
 		}
 	}
 	public function getchart(){
-	    $awal = date('Y-m-d H:i:s',strtotime($this->input->post('awal')));
-	    $akhir = date('Y-m-d H:i:s',strtotime($this->input->post('akhir')));
-	    return $query = $this->db->query('SELECT * FROM data WHERE tanggal between "'.$awal.'" AND "'.$akhir.'" Group By rw'); 
-	    
+		$awal = date('Y-m-d H:i:s',strtotime($this->input->post('awal')));
+		$akhir = date('Y-m-d H:i:s',strtotime($this->input->post('akhir')));
+		return $query = $this->db->query('SELECT * FROM data WHERE tanggal between "'.$awal.'" AND "'.$akhir.'" Group By rw'); 
+
 	}
 	public function getrt()
 	{
-		$query = $this->db->query('SELECT * FROM data group By rt');
+		$query = $this->db->query('SELECT * FROM data group By rw');
 		return $query->result();
 	}
 	public function actionAddUser()
@@ -62,30 +62,31 @@ class M_back extends CI_Model
 		}
 		redirect('main/user');
 	}
-	public function actionCariData($jenis_kelamin, $rt, $rw, $kelurahan, $kecamatan, $kota, $tanggal_lahir, $status_perkawinan, $pendapatan, $kartu_lansia)
+	public function actionCariData($keyword)
 	{
-    	$this->db->select('*');
-	    $this->db->from('data');
-	    if(empty($jenis_kelamin)) {
-	        $this->db->group_start();
-	        $this->db->like('jenis_kelamin', $jenis_kelamin);
-	        $this->db->like('rt', $rt);
-	        $this->db->like('rw', $rw);
-	        $this->db->like('kelurahan', $kelurahan);
-	        $this->db->like('kecamatan', $kecamatan);
-	        $this->db->like('kota', $kota);
-	        $this->db->like('tanggal_lahir', $tanggal_lahir);
-	        $this->db->like('status_perkawinan', $status_perkawinan);
-	        $this->db->like('pendapatan', $pendapatan);
-	        $this->db->like('kartu_lansia', $kartu_lansia);
-	        $this->db->group_end();
-	    }
-	    $this->db->like('jenis_kelamin', $jenis_kelamin);
-	    $this->db->like('rt', $rt);
-	        $this->db->like('rw', $rw);
-	    // $this->db->or_like('rt', $rt);
-
-	    return $this->db->get()->result();
+		$this->db->select('*');
+		$this->db->from('data');
+		if(!empty($keyword)) {
+			$keyword1 = str_replace("%20", " ", $keyword);
+			$this->db->like('jenis_kelamin', $keyword1);
+			$this->db->or_like('rt', $keyword1);
+			$this->db->or_like('rw', $keyword1);
+			$this->db->or_like('kelurahan', $keyword1);
+			$this->db->or_like('kecamatan', $keyword1);
+			$this->db->or_like('kota', $keyword1);
+			$this->db->or_like('tanggal_lahir', $keyword1);
+			$this->db->or_like('status_perkawinan', $keyword1);
+			$this->db->or_like('pendapatan', $keyword1);
+			$this->db->or_like('kartu_lansia', $keyword1);
+			$this->db->or_like('kondisi_bangunan', $keyword1);
+			$this->db->or_like('putus_sekolah', $keyword1);
+			$this->db->or_like('sumur_air_tanah', $keyword1);
+			$this->db->or_like('pdam', $keyword1);
+			$this->db->or_like('riwayat_medis', $keyword1);
+			$this->db->or_like('kondisi_bangunan', $keyword1);
+		}
+		$this->db->like('jenis_kelamin', $keyword1);
+		return $this->db->get()->result();
 	}	
 	function getEditUser($id)
 	{
