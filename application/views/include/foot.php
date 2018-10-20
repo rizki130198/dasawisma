@@ -235,13 +235,14 @@
 
         var options = {
             height: 450,
+            colors: ['blue','red'],
             chart: {
                 title: 'Perbandingan',
                 subtitle: 'Jumlah Perempuan dan Jumlah Laki Berdasarkan Kelurahan GAMBIR',
             },
               isStacked: true,
                 hAxis: {
-                    format: ';'
+                    format: 'decimal',
                 },
                 vAxis: {
                     direction: -1
@@ -254,9 +255,9 @@
  
             formatter.format(data, 2)
 
-            var chart = new google.charts.Bar(document.getElementById('chart_div'));
+            var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
 
-            chart.draw(data, google.charts.Bar.convertOptions(options));
+            chart.draw(data, options);
         }
 
     </script>

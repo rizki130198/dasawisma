@@ -19,7 +19,7 @@
                     <div class="col-lg-4">
                       <div class="input-group">
                         <select class="form-control" name="rw" id="rw">
-                          <option selected disabled>Filter Berdasarkan RW</option>
+                          <option value="0" selected disabled>Filter Berdasarkan RW</option>
                           <?php foreach ($rt as $key): ?>
                             <option value="<?=$key->rw?>"><?=$key->rw?></option>
                           <?php endforeach ?>
@@ -28,7 +28,7 @@
                       <div class="col-lg-4">
                         <div class="input-group">
                           <select class="form-control" name="rw2" id="rw2">
-                            <option selected disabled>Filter Berdasarkan RW</option>
+                            <option value="0" selected disabled>Filter Berdasarkan RW</option>
                             <?php foreach ($rt as $key): ?>
                               <option value="<?=$key->rw?>"><?=$key->rw?></option>
                             <?php endforeach ?>
@@ -109,7 +109,7 @@
                       <div class="col-lg-4">
                         <div class="input-group">
                          <select class="form-control" name="rw" id="rw">
-                          <option selected disabled>Filter Berdasarkan RW</option>
+                          <option value="0" selected disabled>Filter Berdasarkan RW</option>
                           <?php foreach ($rt as $key): ?>
                             <option value="<?=$key->rw?>"><?=$key->rw?></option>
                           <?php endforeach ?>
@@ -118,7 +118,7 @@
                       <div class="col-lg-4">
                         <div class="input-group">
                           <select class="form-control" name="rw2" id="rw2">
-                            <option selected disabled>Filter Berdasarkan RW</option>
+                            <option value="0" selected disabled>Filter Berdasarkan RW</option>
                             <?php foreach ($rt as $key): ?>
                               <option value="<?=$key->rw?>"><?=$key->rw?></option>
                             <?php endforeach ?>

@@ -1,9 +1,12 @@
 
-<div id="pyramidchart"></div>
-<div id="pyramidchart2"></div>
+<?php 
+$post = $this->input->post('rw');
+$post2 = $this->input->post('rw2');
+if ($post!='0'){ ?>
 
-<script type="text/javascript">
-    google.charts.load('current', {'packages':['bar']});
+<div id="pyramidchart"></div>
+    <script type="text/javascript">
+    google.charts.load('visualization', {'packages':['bar']});
     google.charts.setOnLoadCallback(drawChartbar);
 
     function drawChartbar() {
@@ -11,8 +14,6 @@
             ['umur', 'Laki-Laki', 'Perempuan'],
                 // var_dump($umur);
                     <?php 
-
-        		$post = $this->input->post('rw');
                 $balitalaki = $this->db->query('SELECT * FROM data where jenis_kelamin="LAKI-LAKI" AND rw="'.$post.'" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 0 and 5 ')->num_rows();
                 $balitaperempuan = $this->db->query('SELECT * FROM data where jenis_kelamin="PEREMPUAN" AND rw="'.$post.'" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 0 and 5 ')->num_rows();
                 $analaki = $this->db->query('SELECT * FROM data where jenis_kelamin="LAKI-LAKI" AND rw="'.$post.'" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 6 and 10 ')->num_rows();
@@ -97,8 +98,11 @@
         }
 
     </script>
+<?php }else if($post2 != '0'){?>
+
+<div id="pyramidchart2"></div>
     <script type="text/javascript">
-    google.charts.load('current', {'packages':['bar']});
+    google.charts.load('visualization', {'packages':['bar']});
     google.charts.setOnLoadCallback(drawChartbar);
 
     function drawChartbar() {
@@ -192,3 +196,4 @@
         }
 
     </script>
+    <?php }else{ } ?>
