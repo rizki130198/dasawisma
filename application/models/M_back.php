@@ -26,10 +26,10 @@ class M_back extends CI_Model
 		}
 	}
 	public function getchart(){
-	    $awal = date('Y-m-d H:i:s',strtotime($this->input->post('awal')));
-	    $akhir = date('Y-m-d H:i:s',strtotime($this->input->post('akhir')));
-	    return $query = $this->db->query('SELECT * FROM data WHERE tanggal between "'.$awal.'" AND "'.$akhir.'" Group By rw'); 
-	    
+		$awal = date('Y-m-d H:i:s',strtotime($this->input->post('awal')));
+		$akhir = date('Y-m-d H:i:s',strtotime($this->input->post('akhir')));
+		return $query = $this->db->query('SELECT * FROM data WHERE tanggal between "'.$awal.'" AND "'.$akhir.'" Group By rw'); 
+
 	}
 	public function getrt()
 	{
@@ -62,6 +62,32 @@ class M_back extends CI_Model
 		}
 		redirect('main/user');
 	}
+	public function actionCariData($keyword)
+	{
+		$this->db->select('*');
+		$this->db->from('data');
+		if(!empty($keyword)) {
+			$keyword1 = str_replace("%20", " ", $keyword);
+			$this->db->like('jenis_kelamin', $keyword1);
+			$this->db->or_like('rt', $keyword1);
+			$this->db->or_like('rw', $keyword1);
+			$this->db->or_like('kelurahan', $keyword1);
+			$this->db->or_like('kecamatan', $keyword1);
+			$this->db->or_like('kota', $keyword1);
+			$this->db->or_like('tanggal_lahir', $keyword1);
+			$this->db->or_like('status_perkawinan', $keyword1);
+			$this->db->or_like('pendapatan', $keyword1);
+			$this->db->or_like('kartu_lansia', $keyword1);
+			$this->db->or_like('kondisi_bangunan', $keyword1);
+			$this->db->or_like('putus_sekolah', $keyword1);
+			$this->db->or_like('sumur_air_tanah', $keyword1);
+			$this->db->or_like('pdam', $keyword1);
+			$this->db->or_like('riwayat_medis', $keyword1);
+			$this->db->or_like('kondisi_bangunan', $keyword1);
+		}
+		$this->db->like('jenis_kelamin', $keyword1);
+		return $this->db->get()->result();
+	}	
 	function getEditUser($id)
 	{
 		$query = $this->db->get_where('tbl_user',array('id'=>$id))->result();

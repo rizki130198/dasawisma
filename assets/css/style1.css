@@ -11,4 +11,12 @@
 	.main-panel{
 		margin-left: 0 !important;
 	}
+	.wraper {
+		width: 387% !important;
+		margin-left: -90%;
+	}
+	canvas {
+		width: 67% !important;
+		height: auto !important;
+	}
 } 

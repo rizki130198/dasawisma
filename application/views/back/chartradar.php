@@ -1,10 +1,14 @@
 <div class="row">
     <div class="col-md-6">
-<canvas id="myChartbaru" style="width: 300px; height: 100px;"></canvas>
-</div>
-<div class="col-md-6">
-<canvas id="myChartbaru2" style="width: 300px; height: 100px;"></canvas>
-</div>
+        <div class="wraper">
+            <canvas id="myChartbaru" height="300" width="100"></canvas>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="wraper">
+            <canvas id="myChartbaru2" height="300" width="100"></canvas>
+        </div>
+    </div>
 </div>
 <script type="text/javascript">
     <?php 

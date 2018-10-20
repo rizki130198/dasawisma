@@ -41,7 +41,9 @@
                     </div>
                   </form>
                   <br>
-                  <canvas class="radar" id="myChart" style="width: 300px; height: 100px;"></canvas>
+                  <div class="wraper">
+                    <canvas class="radar" id="myChart" height="300" width="800"></canvas>
+                  </div>
                   <div class="radarbaru"></div>
                   <!-- <div class="radarbaru2"></div> -->
                 </div>
@@ -130,6 +132,7 @@
                       </div>
                     </div>
                   </form>
+                  <br>
                   <div class="pyramid" id="chart_div"></div>
                   <div class="barupyramid"></div>
                   <div class="barupyramid2"></div>
