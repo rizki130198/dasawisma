@@ -36,6 +36,11 @@ class M_back extends CI_Model
 		$query = $this->db->query('SELECT * FROM data group By rw');
 		return $query->result();
 	}
+	public function getKel()
+	{
+		$query = $this->db->query('SELECT * FROM data group By kelurahan');
+		return $query->result();
+	}
 	public function actionAddUser()
 	{
 		$email = $this->db->get_where('tbl_user', array('email' => $this->input->post('email',TRUE)))->row();

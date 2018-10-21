@@ -15,6 +15,7 @@ class Main extends CI_Controller
 		$data['title'] = "Halaman Dashboad - PKK";
 		$data['menu'] = "Dashboad";
 		$data['rt'] = $this->M_back->getrt();
+		$data['kel'] = $this->M_back->getKel();
 		$this->load->view('include/head',$data);
 		$this->load->view('back/dashboard',$data);
 		$this->load->view('include/foot');
@@ -106,6 +107,7 @@ class Main extends CI_Controller
 	}
 	public function chartradar()
 	{
+		// return var_dump($this->input->post('rw3'));
 		$this->load->view('back/chartradar');
 
 	}

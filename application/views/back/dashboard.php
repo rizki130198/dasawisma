@@ -14,67 +14,39 @@
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <form action="javascript:void(0);" id="chartradar" method="POST">
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <div class="input-group">
-                        <select class="form-control" name="rw" id="rw">
-                          <option value="0" selected disabled>Filter Berdasarkan RW</option>
-                          <?php foreach ($rt as $key): ?>
-                            <option value="<?=$key->rw?>"><?=$key->rw?></option>
-                          <?php endforeach ?>
-                        </select></div>
-                      </div> 
-                      <div class="col-lg-4">
-                        <div class="input-group">
-                          <select class="form-control" name="rw2" id="rw2">
-                            <option value="0" selected disabled>Filter Berdasarkan RW</option>
-                            <?php foreach ($rt as $key): ?>
-                              <option value="<?=$key->rw?>"><?=$key->rw?></option>
-                            <?php endforeach ?>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-lg-4">
-                        <button type="submit" class="btn btn-danger btn-block">Cari Chart</button>
-                      </div>
-                    </div>
-                  </form>
-                  <br>
-                  <div class="wraper">
-                    <canvas class="radar" id="myChart" height="300" width="800"></canvas>
-                  </div>
-                  <div class="radarbaru"></div>
-                  <!-- <div class="radarbaru2"></div> -->
-                </div>
+               <div class="input-group">
+                <select class="form-control" name="kelurahan" id="kelurahan" onchange="changekel(this)">
+                  <option selected disabled>Filter Berdasarkan Kelurahan</option>
+                  <option value="">Kembali Ke Default</option>
+                  <?php foreach ($kel as $data): ?>
+                    <option value="<?=$data->kelurahan?>"><?=$data->kelurahan?></option>
+                  <?php endforeach ?>
+                </select>
               </div>
-            </div>  
-<!--             <div class="col-lg-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <form action="javascript:void(0);" id="chartline" method="POST">
-                    <div class="row">
-                      <div class="col-lg-4">
-                        <div class="input-group">
-                          <input type="text" id="awallinechart" autocomplete="off" class="form-control" name="awal" placeholder="Dari Tanggal">
-                        </div>
-                      </div> 
-                      <div class="col-lg-4">
-                        <div class="input-group">
-                          <input type="text" id="akhirlinechart" autocomplete="off" class="form-control" name="akhir" placeholder="Ke Tanggal">
-                        </div>
-                      </div>
-                      <div class="col-lg-4">
-                        <button type="submit" class="btn btn-danger">Cari Chart</button>
-                      </div>
+              <!-- <form class="formrw"  action="javascript:void(0);" id="chartradar" method="POST"> -->
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="input-group">
+                      <select class="form-control formrw" style="display: none;" name="rw" id="rw" onchange="changerw(this)">
+                        <option selected disabled>Filter Berdasarkan RW</option>
+                        <?php foreach ($rt as $key): ?>
+                          <option value="<?=$key->rw?>"><?=$key->rw?></option>
+                        <?php endforeach ?>
+                      </select>
+                      <input type="hidden" name="kel" id="inputhiden">
                     </div>
-                  </form>
-                  <div class="line" id="line_top_x" style="width: 800px; height: 500px;"></div>
-                  <div class="baru"></div>
+                  </div> 
                 </div>
+              <!-- </form> -->
+              <br>
+              <div class="wraper">
+                <canvas class="radar" id="myChart" height="300" width="800"></canvas>
               </div>
-            </div> -->
-          </div>  
+              <div class="radarbaru"></div>
+            </div>
+          </div>
+        </div>  
+      </div>  
 <!--           <div class="row">  
             <div class="col-md-12 grid-margin">
               <div class="card">
@@ -106,12 +78,12 @@
             <div class="col-md-12 grid-margin">
               <div class="card">
                 <div class="card-body">
-                  <form action="javascript:void(0);" id="chartpyramid" method="POST">
                     <div class="row">
                       <div class="col-lg-4">
                         <div class="input-group">
-                         <select class="form-control" name="rw" id="rw">
+                         <select class="form-control" name="rw2" id="rw2" onchange="changerw2(this)">
                           <option value="0" selected disabled>Filter Berdasarkan RW</option>
+                          <option value="">Kembali Ke Chart Awal</option>
                           <?php foreach ($rt as $key): ?>
                             <option value="<?=$key->rw?>"><?=$key->rw?></option>
                           <?php endforeach ?>
@@ -119,16 +91,14 @@
                       </div> 
                       <div class="col-lg-4">
                         <div class="input-group">
-                          <select class="form-control" name="rw2" id="rw2">
-                            <option value="0" selected disabled>Filter Berdasarkan RW</option>
+                          <select class="form-control" name="rw3" id="rw3" onchange="changerw3(this)">
+                            <option selected disabled>Bandingkan dengan Rw di samping</option>
+                            <option value="">Hilangkan</option>
                             <?php foreach ($rt as $key): ?>
                               <option value="<?=$key->rw?>"><?=$key->rw?></option>
                             <?php endforeach ?>
                           </select>
                         </div>
-                      </div>
-                      <div class="col-lg-4">
-                        <button type="submit" class="btn btn-danger btn-block">Cari Chart</button>
                       </div>
                     </div>
                   </form>

@@ -11,35 +11,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.es.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 <script type="text/javascript">
-    $("#chartline").submit(function() {
-        var dt = $("#chartline").serialize();
-        $.ajax({
-            url: "<?=site_url('main/chartline')?>",
-            type: 'POST',
-            data: dt,
-            dataType: 'html',
-            success:function(res) {
-                $('.line').hide();
-                $('.baru').html(res);
-                $('.baru').show();
-            }
-        })
-    });
-        $("#chartcolum").submit(function() {
-        var dt = $("#chartcolum").serialize();
-        $.ajax({
-            url: "<?=site_url('main/chartcolum')?>",
-            type: 'POST',
-            data: dt,
-            dataType: 'html',
-            success:function(res) {
-                $('.colom').hide();
-                $('.barucolom').html(res);
-                $('.barucolom').show();
-            }
-        })
-    });
-        $("#chartpyramid").submit(function() {
+    $("#chartpyramid").submit(function() {
         var dt = $("#chartpyramid").serialize();
         $.ajax({
             url: "<?=site_url('main/chartpyramid')?>",
@@ -71,30 +43,99 @@
             }
         })
     });
-	$(document).ready(function() {
-		$(".datatable").DataTable();
-	});
-	
+    $(document).ready(function() {
+      $(".datatable").DataTable();
+  });
+    function changekel() {
+     $.ajax({
+        url: "<?=site_url('main/chartradar')?>",
+        type: 'POST',
+        data: {kelu:$('#kelurahan').val()},
+        dataType: 'html',
+        success:function(res) {
+            if($('#kelurahan').val() == ""){
+                $('.formrw').hide();
+                $('.radar').show();
+            }else{
+                $('.formrw').removeAttr('style');
+                $('.radar').hide();
+                $('.radarbaru').html(res);
+                $('#inputhiden').val($('#kelurahan').val());
+            }
+        }
+    });
+ }
+ function changerw() {
+     $.ajax({
+        url: "<?=site_url('main/chartradar')?>",
+        type: 'POST',
+        data: {rw:$('#rw').val(),'kelu':$('#inputhiden').val()},
+        dataType: 'html',
+        success:function(res) {
+            if($('#kelurahan').val() == ""){
+                $('.formrw').attr('style','none');
+            }else{
+                $('.radarbaru').html(res);
+            }
+        }
+    });
+ }
+ function changerw2() {
+     $.ajax({
+        url: "<?=site_url('main/chartpyramid')?>",
+        type: 'POST',
+        data: {rw2:$('#rw2').val()},
+        dataType: 'html',
+        success:function(res) {
+            if($('#rw2').val() == ""){
+                $('.pyramid').show();
+                $('.barupyramid').hide();
+                $('.barupyramid2').hide();
+            }else{
+                $('.pyramid').hide();
+                $('.barupyramid').html(res);
+            }
+        }
+    });
+ }
+ function changerw3() {
+     $.ajax({
+        url: "<?=site_url('main/chartpyramid')?>",
+        type: 'POST',
+        data: {rw3:$('#rw3').val()},
+        dataType: 'html',
+        success:function(res) {
+            if($('#rw3').val() == ""){
+                $('.barupyramid').show();
+                $('.pyramid').hide();
+                $('.barupyramid2').hide();
+            }else{
+                $('.pyramid').hide();
+                $('.barupyramid2').html(res);
+            }
+        }
+    });
+ }
 </script>
 <script >
     $(function () {
         // Awal Colom
-        	$('#awalcolomchart').datepicker({
-                format: 'yyyy-mm-dd' 
-            }).on('changeDate', function(selected){
-                startDate = new Date(selected.date.valueOf());
-                startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
-                $('#akhircolomchart').datepicker('setStartDate', startDate);
-            }); 
-    
+        $('#awalcolomchart').datepicker({
+            format: 'yyyy-mm-dd' 
+        }).on('changeDate', function(selected){
+            startDate = new Date(selected.date.valueOf());
+            startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
+            $('#akhircolomchart').datepicker('setStartDate', startDate);
+        }); 
+
         $('#akhircolomchart').datepicker({
-                format: 'yyyy-mm-dd'
-            }).on('changeDate', function(selected){
-                FromEndDate = new Date(selected.date.valueOf());
-                FromEndDate.setDate(FromEndDate.getDate(new Date(selected.date.valueOf())));
-                $('#awalcolomchart').datepicker('setEndDate', FromEndDate);
-            });
-            
+            format: 'yyyy-mm-dd'
+        }).on('changeDate', function(selected){
+            FromEndDate = new Date(selected.date.valueOf());
+            FromEndDate.setDate(FromEndDate.getDate(new Date(selected.date.valueOf())));
+            $('#awalcolomchart').datepicker('setEndDate', FromEndDate);
+        });
+
             // Awal Line
             $('#awallinechart').datepicker({
                 format: 'yyyy-mm-dd' 
@@ -104,7 +145,7 @@
                 $('#akhirlinechart').datepicker('setStartDate', startDate);
             }); 
 
-        $('#akhirlinechart').datepicker({
+            $('#akhirlinechart').datepicker({
                 format: 'yyyy-mm-dd'
             }).on('changeDate', function(selected){
                 FromEndDate = new Date(selected.date.valueOf());
@@ -113,7 +154,7 @@
             });
             
             // Chart Bar
-        $('#awalchartbar').datepicker({
+            $('#awalchartbar').datepicker({
                 format: 'yyyy-mm-dd' 
             }).on('changeDate', function(selected){
                 startDate = new Date(selected.date.valueOf());
@@ -121,7 +162,7 @@
                 $('#akhirchartbar').datepicker('setStartDate', startDate);
             }); 
 
-        $('#akhirchartbar').datepicker({
+            $('#akhirchartbar').datepicker({
                 format: 'yyyy-mm-dd'
             }).on('changeDate', function(selected){
                 FromEndDate = new Date(selected.date.valueOf());
@@ -138,7 +179,7 @@
                 $('#akhirpyramidchart').datepicker('setStartDate', startDate);
             }); 
 
-        $('#akhirpyramidchart').datepicker({
+            $('#akhirpyramidchart').datepicker({
                 format: 'yyyy-mm-dd'
             }).on('changeDate', function(selected){
                 FromEndDate = new Date(selected.date.valueOf());
@@ -147,29 +188,29 @@
             });
             
             //Awal Radar
-        $('#awalradarchart').datepicker({
-            format: 'yyyy-mm-dd' 
+            $('#awalradarchart').datepicker({
+                format: 'yyyy-mm-dd' 
             }).on('changeDate', function(selected){
                 startDate = new Date(selected.date.valueOf());
                 startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
                 $('#akhirradarchart').datepicker('setStartDate', startDate);
             }); 
-       $('#akhirradarchart').datepicker({
+            $('#akhirradarchart').datepicker({
                 format: 'yyyy-mm-dd'
             }).on('changeDate', function(selected){
                 FromEndDate = new Date(selected.date.valueOf());
                 FromEndDate.setDate(FromEndDate.getDate(new Date(selected.date.valueOf())));
                 $('#awalradarchart').datepicker('setEndDate', FromEndDate);
             });
-    });
-</script>
+        });
+    </script>
     <script type="text/javascript">
         google.charts.load("current", {packages:["corechart","bar"]});
-    google.charts.setOnLoadCallback(drawChartbar);
+        google.charts.setOnLoadCallback(drawChartbar);
 
-    function drawChartbar() {
-        var data = google.visualization.arrayToDataTable([
-            ['umur', 'Laki-Laki', 'Perempuan'],
+        function drawChartbar() {
+            var data = google.visualization.arrayToDataTable([
+                ['umur', 'Laki-Laki', 'Perempuan'],
                 // var_dump($umur);
                 <?php 
                 $balitalaki = $this->db->query('SELECT * FROM data where jenis_kelamin="LAKI-LAKI" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 0 and 5 ')->num_rows();
@@ -212,95 +253,95 @@
                 $batasumurperempuan5 = $this->db->query('SELECT * FROM data where jenis_kelamin="PEREMPUAN" AND (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 91 and 99 ')->num_rows();
 
                 ?>
-                 ['91-95 Tahun',<?=$batasumurlaki5?>,  <?=($batasumurperempuan5==0)?0:-$batasumurperempuan5?> ],
-                ['86-90 Tahun',<?=$batasumurlaki4?>,  <?=($batasumurperempuan4==0)?0:-$batasumurperempuan4?> ],
-                ['81-85 Tahun',<?=$batasumurlaki3?>,  <?=($batasumurperempuan3==0)?0:-$batasumurperempuan3?> ],
-                ['76-80 Tahun',<?=$batasumurlaki2?>,  <?=($batasumurperempuan2==0)?0:-$batasumurperempuan2?> ],
-                ['71-75 Tahun',<?=$batasumurlaki?>,  <?=($batasumurperempuan==0)?0:-$batasumurperempuan?> ],
-                ['66-70 Tahun',<?=$maumatilaki?>,  <?=($maumatiperempuan==0)?0:-$maumatiperempuan?> ],
-                ['61-65 Tahun',<?=$lansialaki?>,  <?=($lansiaperempuan==0)?0:-$lansiaperempuan?> ],
-                ['55-60 Tahun',<?=$pensiunlaki?>,  <?=($pensiunperempuan==0)?0:-$pensiunperempuan?> ],
-                ['51-55 Tahun',<?=$kakek?>,  <?=($nenek==0)?0:-$nenek?> ],
-                ['46-50 Tahun',<?=$maujadikakek?>, <?=($maumatiperempuan==0)?0:-$maumatiperempuan?> ],
-                ['41-45 Tahun',<?=$laki?>, <?=($perempuan==0)?0:-$perempuan?> ],
-                ['36-40 Tahun',<?=$produktiflaki?>, <?=($produktifperempuan==0)?0:-$produktifperempuan?> ],
-                ['31-35 Tahun',<?=$om?>, <?=($tante==0)?0:-$tante?> ],
-                ['25-30 Tahun',<?=$dewasalaki?>,  <?=($dewasaperempuan==0)?0:-$dewasaperempuan?> ],
-                ['21-25 Tahun',<?=$usialaki?>,  <?=($usiaperempuan==0)?0:-$usiaperempuan?> ],
-                ['15-20 Tahun',<?=$mau20laki?>,  <?=($mau20perempuan==0)?0:-$mau20perempuan?> ],
-                ['11-15 Tahun',<?=$abglaki?>,  <?=($abgperempuan==0)?0:-$abgperempuan?> ],
+                ['0-5 Tahun',<?=$balitalaki?>,  <?=($balitaperempuan==0)?0:-$balitaperempuan?> ],
                 ['6-10 Tahun',<?=$analaki?>,  <?=($anakperempuan==0)?0:-$anakperempuan?> ],
-                ['0-5 Tahun',<?=$balitalaki?>,  <?=($balitaperempuan==0)?0:-$balitaperempuan?> ]
-            ]);
+                ['11-15 Tahun',<?=$abglaki?>,  <?=($abgperempuan==0)?0:-$abgperempuan?> ],
+                ['15-20 Tahun',<?=$mau20laki?>,  <?=($mau20perempuan==0)?0:-$mau20perempuan?> ],
+                ['21-25 Tahun',<?=$usialaki?>,  <?=($usiaperempuan==0)?0:-$usiaperempuan?> ],
+                ['25-30 Tahun',<?=$dewasalaki?>,  <?=($dewasaperempuan==0)?0:-$dewasaperempuan?> ],
+                ['31-35 Tahun',<?=$om?>, <?=($tante==0)?0:-$tante?> ],
+                ['36-40 Tahun',<?=$produktiflaki?>, <?=($produktifperempuan==0)?0:-$produktifperempuan?> ],
+                ['41-45 Tahun',<?=$laki?>, <?=($perempuan==0)?0:-$perempuan?> ],
+                ['46-50 Tahun',<?=$maujadikakek?>, <?=($maumatiperempuan==0)?0:-$maumatiperempuan?> ],
+                ['51-55 Tahun',<?=$kakek?>,  <?=($nenek==0)?0:-$nenek?> ],
+                ['55-60 Tahun',<?=$pensiunlaki?>,  <?=($pensiunperempuan==0)?0:-$pensiunperempuan?> ],
+                ['61-65 Tahun',<?=$lansialaki?>,  <?=($lansiaperempuan==0)?0:-$lansiaperempuan?> ],
+                ['66-70 Tahun',<?=$maumatilaki?>,  <?=($maumatiperempuan==0)?0:-$maumatiperempuan?> ],
+                ['71-75 Tahun',<?=$batasumurlaki?>,  <?=($batasumurperempuan==0)?0:-$batasumurperempuan?> ],
+                ['76-80 Tahun',<?=$batasumurlaki2?>,  <?=($batasumurperempuan2==0)?0:-$batasumurperempuan2?> ],
+                ['81-85 Tahun',<?=$batasumurlaki3?>,  <?=($batasumurperempuan3==0)?0:-$batasumurperempuan3?> ],
+                ['86-90 Tahun',<?=$batasumurlaki4?>,  <?=($batasumurperempuan4==0)?0:-$batasumurperempuan4?> ],
+                ['91-95 Tahun',<?=$batasumurlaki5?>,  <?=($batasumurperempuan5==0)?0:-$batasumurperempuan5?> ]
+                ]);
 
-        var options = {
-            height: 450,
-            colors: ['blue','red'],
-            chart: {
-                title: 'Perbandingan',
-                subtitle: 'Jumlah Perempuan dan Jumlah Laki Berdasarkan Kelurahan GAMBIR',
-            },
-              isStacked: true,
-                hAxis: {
-                    format: 'decimal',
-                },
-                vAxis: {
-                    direction: -1
-                },
-            bars: 'horizontal',
-        };
-        var formatter = new google.visualization.NumberFormat({
-                pattern: ';'
-            });
- 
-            formatter.format(data, 2)
+var options = {
+    height: 450,
+    chart: {
+        title: 'Perbandingan',
+        subtitle: 'Jumlah Perempuan dan Jumlah Laki Berdasarkan Kelurahan GAMBIR',
+    },
+    isStacked: true,
+    bars: 'horizontal',
+    hAxis: {
+        format: ';'
+    }
+};
+var formatter = new google.visualization.NumberFormat({
+    pattern: ';'
+});
+formatter.format(data, 2)
 
-            var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+var chart = new google.charts.Bar(document.getElementById('chart_div'));
 
-            chart.draw(data, options);
-        }
+chart.draw(data, new google.charts.Bar.convertOptions(options));
+}
 
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-    <script type="text/javascript">
-        <?php 
-        $getpendapatan = $this->db->query('SELECT * FROM data where pendapatan="0 JT-5 JT"')->num_rows();
-        $bangunan = $this->db->query('SELECT * FROM data where kondisi_bangunan = "TIDAK LAYAK HUNI"')->num_rows();
-        $sekolah = $this->db->query('SELECT * FROM data where putus_sekolah="YA"')->num_rows(); 
-        $sumur = $this->db->query('SELECT * FROM data where sumur_air_tanah="YA"')->num_rows(); 
-        $pdam = $this->db->query('SELECT * FROM data where pdam="YA"')->num_rows(); 
-        $medis = $this->db->query('SELECT * FROM data where riwayat_medis!="TIDAK"')->num_rows(); 
-        $balita = $this->db->query('SELECT * FROM data where (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 0 and 5 ')->num_rows();
-        $hamil = $this->db->query('SELECT * FROM data where status_ibu="HAMIL"')->num_rows(); ?>
-    	new Chart(document.getElementById("myChart"),
-		{
-            "type":"radar",
-            "data":{
-                "labels":['Pendapatan 0- 5 Juta', 'Tidak Layak Huni', 'Putus Sekolah', 'Sumber Air Tanah', 'Sumber PDAM', 'Ada Riwayat Medis','Usia Balita 0-5 thn','Ibu Hamil'],
-                 "datasets": [{
-                "label" : 'GAMBIR',
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script type="text/javascript">
+    <?php 
+    $getpendapatan = $this->db->query('SELECT * FROM data where pendapatan="0 JT-5 JT"')->num_rows();
+    $bangunan = $this->db->query('SELECT * FROM data where kondisi_bangunan = "TIDAK LAYAK HUNI"')->num_rows();
+    $sekolah = $this->db->query('SELECT * FROM data where putus_sekolah="YA"')->num_rows(); 
+    $sumur = $this->db->query('SELECT * FROM data where sumur_air_tanah="YA"')->num_rows(); 
+    $pdam = $this->db->query('SELECT * FROM data where pdam="YA"')->num_rows(); 
+    $medis = $this->db->query('SELECT * FROM data where riwayat_medis!="TIDAK"')->num_rows(); 
+    $balita = $this->db->query('SELECT * FROM data where (YEAR(NOW()) - YEAR(`tanggal_lahir`)) between 0 and 5 ')->num_rows();
+    $hamil = $this->db->query('SELECT * FROM data where status_ibu="HAMIL"')->num_rows();
+    $disabilitas = $this->db->query('SELECT * FROM data where disabilitas="YA"')->num_rows(); ?>
+    new Chart(document.getElementById("myChart"),
+    {
+        "type":"radar",
+        "data":{
+            "labels":['Pendapatan 0- 5 Juta', 'Tidak Layak Huni', 'Putus Sekolah', 'Sumber Air Tanah', 'Sumber PDAM', 'Ada Riwayat Medis','Usia Balita 0-5 thn','Ibu Hamil','Disabilitas'],
+            "datasets": [{
+                "label" : 'Data Seluruh',
                 "fill":true,
-                    "backgroundColor":"rgba(255, 99, 132, 0.2)",
-                    "borderColor":"rgb(255, 99, 132)",
-                    "pointBackgroundColor":"rgb(255, 99, 132)",
-                    "pointBorderColor":"#fff",
-                    "pointHoverBackgroundColor":"#fff",
-                    "pointHoverBorderColor":"rgb(255, 99, 132)",
-                "data": [<?=$getpendapatan?>,<?=$bangunan?> ,<?=$sekolah?>,<?=$sumur?>, <?=$pdam?>,<?=$medis?>,<?=$balita?>,<?=$hamil?>]
+                "backgroundColor":"rgba(255, 99, 132, 0.2)",
+                "borderColor":"rgb(255, 99, 132)",
+                "pointBackgroundColor":"rgb(255, 99, 132)",
+                "pointBorderColor":"#fff",
+                "pointHoverBackgroundColor":"#fff",
+                "pointHoverBorderColor":"rgb(255, 99, 132)",
+                "data": [<?=$getpendapatan?>,<?=$bangunan?> ,<?=$sekolah?>,<?=$sumur?>, <?=$pdam?>,<?=$medis?>,<?=$balita?>,<?=$hamil?>,<?=$disabilitas?>]
             }],
         },
-            "options":
-            {
-                "elements":
-                {
-                    "line":
-                    {
-                        "tension":0,
-                        "borderWidth":3
-                    }
-                }
-            }
-        });
+        "options":
+        {
+            scale: {
+        // Hides the scale
+        display: true
+    },
+    "elements":
+    {
+        "line":
+        {
+            "tension":0,
+            "borderWidth":3
+        }
+    }
+}
+});
 </script>
 </body>
 </html>
