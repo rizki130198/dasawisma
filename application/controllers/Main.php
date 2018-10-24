@@ -83,6 +83,15 @@ class Main extends CI_Controller
 		}
 		redirect(site_url('main/user'));
 	}
+	public function filterrw()
+	{
+		$this->load->view('back/filterrw');
+	}
+	
+	public function chartradarbanding()
+	{
+		$this->load->view('back/chartradarbanding');
+	}
 	public function deleteUser()
 	{
 		$id = $this->uri->segment(3);

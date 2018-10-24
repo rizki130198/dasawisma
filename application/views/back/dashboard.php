@@ -23,8 +23,8 @@
             <div class="card">
               <div class="card-body">
                 <h3 class="card-title" style="font-size: 20px;">Pilih Wilayah</h3>
-                <div class="row">
-                  <div class="col-md-6">
+                <div class="row" id="kelurahanselect">
+                  <div class="col-md-12">
                    <div class="input-group">
                     <select class="form-control" name="kelurahan" id="kelurahan" onchange="changekel(this)">
                       <option selected disabled>Filter Berdasarkan Kelurahan</option>
@@ -35,49 +35,47 @@
                       <?php endforeach ?>
                     </select>
                   </div>
-                  <!-- <form class="formrw"  action="javascript:void(0);" id="chartradar" method="POST"> -->
-                    <div class="input-group">
-                      <select class="form-control formrw" style="display: none;" name="rw" id="rw" onchange="changerw(this)">
-                        <option selected disabled>Filter Berdasarkan RW</option>
-                        <option value="">Tampilkan Semua RW</option>
-                        <?php foreach ($rt as $key): ?>
-                          <option value="<?=$key->rw?>"><?=$key->rw?></option>
-                        <?php endforeach ?>
-                      </select>
-                      <input type="hidden" name="kel" id="inputhiden">
-                    </div>
-                  </div> 
+                  <input type="hidden" name="kel" id="inputhiden">
+                </div>
+                <!-- <form class="formrw"  action="javascript:void(0);" id="chartradar" method="POST"> -->
 
-                  <!-- ROW BANDINGKAN -->
-                  <div id="banding" class="col-md-6" style="display :none;">
+                </div> 
+
+                <!-- ROW BANDINGKAN -->
+                <div class="row" id="banding" style="display :none;">
+                  <div class="col-md-6" >
                    <div class="input-group">
-                    <select class="form-control" name="kelurahan" id="kelurahan" onchange="changekel(this)">
+                    <select class="form-control" name="kelurahanbanding" id="kelurahanbanding" onchange="changekelbanding(this)">
                       <option selected disabled>Filter Berdasarkan Kelurahan</option>
-                      <option value="">Kembali Ke Default</option>
                       <?php foreach ($kel as $data): ?>
                         <option value="<?=$data->kelurahan?>"><?=$data->kelurahan?></option>
                       <?php endforeach ?>
                     </select>
                   </div>
+                </div>
+                <div class="col-md-6" >
                   <div class="input-group">
-                    <select class="form-control formrw" style="display: none;" name="rw" id="rw" onchange="changerw(this)">
+                    <select class="form-control formbanding" style="display: none;" name="bandingrw" id="selectbanding" onchange="changerwbanding(this)">
                       <option selected disabled>Filter Berdasarkan RW</option>
                       <?php foreach ($rt as $key): ?>
                         <option value="<?=$key->rw?>"><?=$key->rw?></option>
                       <?php endforeach ?>
                     </select>
-                    <input type="hidden" name="kel" id="inputhiden">
+                    <input type="hidden" name="kel" id="inputhidenbanding">
                   </div>
                 </div> 
-              <!-- END ROW BANDINGKAN -->
               </div>
+              <!-- END ROW BANDINGKAN -->
 
               <!-- </form> -->
               <br>
               <div class="wraper">
                 <canvas class="radar" id="myChart" height="300" width="800"></canvas>
+                <div class="radarbaru"></div>
+                <div class="radarbanding"></div>
+
+
               </div>
-              <div class="radarbaru"></div>
               <br>
               <div data-toggle="buttons" style="float: right;">
                 <label class="btn btn-danger active" onclick="bandingkan()">
