@@ -47,6 +47,7 @@
                    <div class="input-group">
                     <select class="form-control" name="kelurahanbanding" id="kelurahanbanding" onchange="changekelbanding(this)">
                       <option selected disabled>Filter Berdasarkan Kelurahan</option>
+                      <option value="">Pilih Semua Kelurahan</option>
                       <?php foreach ($kel as $data): ?>
                         <option value="<?=$data->kelurahan?>"><?=$data->kelurahan?></option>
                       <?php endforeach ?>
@@ -57,6 +58,7 @@
                   <div class="input-group">
                     <select class="form-control formbanding" style="display: none;" name="bandingrw" id="selectbanding" onchange="changerwbanding(this)">
                       <option selected disabled>Filter Berdasarkan RW</option>
+                      <option value="">Pilih Semua RW</option>
                       <?php foreach ($rt as $key): ?>
                         <option value="<?=$key->rw?>"><?=$key->rw?></option>
                       <?php endforeach ?>

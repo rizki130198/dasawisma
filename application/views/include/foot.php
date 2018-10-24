@@ -63,7 +63,7 @@
       $(".datatable").DataTable();
   });
     function changekel() {
-       $.ajax({
+     $.ajax({
         url: "<?=site_url('main/chartradar')?>",
         type: 'POST',
         data: {kelu:$('#kelurahan').val()},
@@ -82,22 +82,38 @@
             }
         }
     });
-   }
-   function changekelbanding() {
-       $.ajax({
+ }
+ function changekelbanding() {
+     $.ajax({
         url: "<?=site_url('main/filterrw')?>",
         type: 'POST',
         data: {kelu:$('#kelurahanbanding').val()},
         dataType: 'html',
         success:function(res) {
-            $('#selectbanding').removeAttr('style');
-            $('#selectbanding').html(res);
-            $('#inputhidenbanding').val($('#kelurahanbanding').val());
+            $('#selectbanding').hide();
+            if ($('#kelurahanbanding').val() == ""){
+                $.ajax({
+                    url: "<?=site_url('main/chartradarbanding')?>",
+                    type: 'POST',
+                    data: {kelu:$('#kelurahanbanding').val()},
+                    dataType: 'html',
+                    success:function(res) {
+                        $('.radarbanding').html(res);
+                        $('.radarbanding').show();
+                        $('.radar').hide();
+                        $('.radarbaru').hide();
+                    }
+                })
+            }else{
+                $('#selectbanding').removeAttr('style');
+                $('#selectbanding').html(res);
+                $('#inputhidenbanding').val($('#kelurahanbanding').val());
+            }
         }
     });
-   }
-   function changerwbanding() {
-       $.ajax({
+ }
+ function changerwbanding() {
+     $.ajax({
         url: "<?=site_url('main/chartradarbanding')?>",
         type: 'POST',
         data: {rw:$('#selectbanding').val(),'kelu':$('#inputhidenbanding').val()},
@@ -109,9 +125,9 @@
             $('.radarbaru').hide();
         }
     });
-   }
-   function changerw() {
-       $.ajax({
+ }
+ function changerw() {
+     $.ajax({
         url: "<?=site_url('main/chartradar')?>",
         type: 'POST',
         data: {rw:$('#rw').val(),'kelu':$('#inputhiden').val()},
@@ -124,9 +140,9 @@
             }
         }
     });
-   }
-   function changerw2() {
-       $.ajax({
+ }
+ function changerw2() {
+     $.ajax({
         url: "<?=site_url('main/chartpyramid')?>",
         type: 'POST',
         data: {rw2:$('#rw2').val()},
@@ -142,9 +158,9 @@
             }
         }
     });
-   }
-   function changerw3() {
-       $.ajax({
+ }
+ function changerw3() {
+     $.ajax({
         url: "<?=site_url('main/chartpyramid')?>",
         type: 'POST',
         data: {rw3:$('#rw3').val()},
@@ -160,7 +176,7 @@
             }
         }
     });
-   }
+ }
 </script>
 <script >
     $(function () {
